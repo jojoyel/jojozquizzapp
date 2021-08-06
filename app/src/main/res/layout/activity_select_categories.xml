@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectCategoriesActivity">
+
+    <TextView
+        android:id="@+id/activity_select_categories_text"
+        style="@style/ActivityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_categories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<<<<<<< HEAD
+    <com.google.android.material.switchmaterial.SwitchMaterial
+=======
+    <androidx.appcompat.widget.SwitchCompat
+>>>>>>> ae3c503 (flblblblbl)
+        android:id="@+id/switchSelectAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:checked="true"
+        android:text="@string/deselect_all"
+<<<<<<< HEAD
+=======
+        android:textColorLink="?attr/colorSecondary"
+>>>>>>> ae3c503 (flblblblbl)
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_select_categories_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_categories"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchSelectAll" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+<<<<<<< HEAD
+        android:text="@string/difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.20"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_categories" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/activity_select_categories_checkbox_facile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/colorSecondary"
+=======
+        android:layout_marginEnd="20dp"
+        android:text="@string/difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_categories" />
+
+    <CheckBox
+        android:id="@+id/activity_select_categories_checkbox_facile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/colorPrimaryDark"
+>>>>>>> ae3c503 (flblblblbl)
+        android:text="@string/easy"
+        app:layout_constraintEnd_toStartOf="@+id/activity_select_categories_checkbox_moyen"
+        app:layout_constraintHorizontal_bias="0.70"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_select_categories_checkbox_moyen" />
+
+<<<<<<< HEAD
+    <com.google.android.material.checkbox.MaterialCheckBox
+=======
+    <CheckBox
+>>>>>>> ae3c503 (flblblblbl)
+        android:id="@+id/activity_select_categories_checkbox_moyen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+<<<<<<< HEAD
+        android:buttonTint="@color/colorSecondaryDark"
+=======
+        android:buttonTint="@color/colorPrimary"
+>>>>>>> ae3c503 (flblblblbl)
+        android:text="@string/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+<<<<<<< HEAD
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/activity_select_categories_checkbox_difficile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/colorSecondary"
+=======
+    <CheckBox
+        android:id="@+id/activity_select_categories_checkbox_difficile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/colorPrimaryDark"
+>>>>>>> ae3c503 (flblblblbl)
+        android:text="@string/hard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.30"
+        app:layout_constraintStart_toEndOf="@+id/activity_select_categories_checkbox_moyen"
+        app:layout_constraintTop_toTopOf="@+id/activity_select_categories_checkbox_moyen" />
+
+<<<<<<< HEAD
+    <com.google.android.material.button.MaterialButton
+=======
+    <Button
+>>>>>>> ae3c503 (flblblblbl)
+        android:id="@+id/activity_select_categories_button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+<<<<<<< HEAD
+=======
+        android:background="@drawable/rounded_corners_pattern"
+>>>>>>> ae3c503 (flblblblbl)
+        android:text="@string/all_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_select_categories_checkbox_moyen" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75065273" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

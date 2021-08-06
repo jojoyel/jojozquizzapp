@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+<<<<<<< HEAD
+    <color name="colorPrimaryLight">#ff7961</color>
+    <color name="colorPrimaryDark">#ba000d</color>
+
+    <color name="colorSecondary">#2196f3</color>
+    <color name="colorSecondaryLight">#6ec6ff</color>
+    <color name="colorSecondaryDark">#0069c0</color>
+=======
+    <color name="colorPrimary600">#e53953</color>
+    <color name="colorPrimaryDark">#b71c1c</color>
+    <color name="colorPrimaryLight">#ffcdd2</color>
+    <color name="colorSecondary">#2194f3</color>
+    <color name="colorSecondaryDark">#1554C1</color>
+    <color name="colorSecondaryLight">#bbdefb</color>
+>>>>>>> ae3c503 (flblblblbl)
+
+    <color name="colorLightPrimary">#FFCDD2</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="secondaryText">#757575</color>
+    <color name="black">#000000</color>
+    <color name="green_true">#4CAF50</color>
+
+<<<<<<< HEAD
+    <color name="background_night">#191919</color>
+    <color name="background_light">#EDEDED</color>
+=======
+    <color name="backgroundNight">#191919</color>
+    <color name="backgroundLight">#EDEDED</color>
+>>>>>>> ae3c503 (flblblblbl)
+
+    <color name="colorLightPrimaryInDark">#B6888C</color>
+    <color name="colorPrimaryTextInDark">#6C6C6C</color>
+    <color name="secondaryTextInDark">#A5A5A5</color>
+</resources>

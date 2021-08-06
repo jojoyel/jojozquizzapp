@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_welcome">Bienvenue !</string>
+    <string name="string_hint_ask_name">Votre pseudo</string>
+    <string name="string_start">Commencer</string>
+    <string name="links">Quelques liens</string>
+    <string name="hint_number_questions">Nombre de questions :</string>
+    <string name="text_number_questions">Nombre de questions</string>
+    <string name="settings">Paramètres</string>
+    <string name="multiple_choices">QCM</string>
+    <string name="error_start_name">Vous n\'avez pas de nom ?</string>
+    <string name="error_start0">Vous ne pouvez pas demander un nombre de questions égal ou inférieur à 0</string>
+    <string name="error_start1">Vous demandez trop de questions en une seule partie (max. 75)</string>
+    <string name="welcome_title_name_dialog">Bienvenue sur Jojoz Quizz</string>
+    <string name="change_title_name_dialog">Changement de pseudo</string>
+    <string name="text_positive_welcome_dialog">C\'est parti !</string>
+    <string name="play">Jouer</string>
+    <string name="new_game">Nouvelle partie</string>
+    <string name="ad_error">Petit problème pour afficher la pub, réessayez plus tard</string>
+    <string name="link_discord">Serveur Discord</string>
+    <string name="link_thanks">Remerciements</string>
+    <string name="bonus_skip">Passe</string>
+    <string name="content_description_plus">Bouton +</string>
+    <string name="thanks_text">Merci aux personnes listées ci-dessous<br/>A leur petite ou grande contribution pour l\'application :<br/><br/>Questions writers :<br/>- leversplat<br/>- Julie<br/>- Piayral<br/><br/>Design masters : Nokolas (Logo original, et autres petites images)<br/><br/>Beta testers :<br/>- leversplat<br/>- Alexouu<br/>- ODDIN Cyril<br/>- Nokolas<br/>- lo<br/><br/>Leversplat et Wolzinix pour leur immense implication<br/>Et surtout un très grand merci à Alexouu, pour ses conseils et son soutien<br/><br/>Bravo à tous très sincèrement</string>
+    <string name="bonus_2">Une réponse en moins</string>
+    <string name="bonus_easier">Plus facile svp</string>
+    <string name="bonus_help">Aide</string>
+    <string name="question">Question</string>
+    <string name="answer1">Réponse 1</string>
+    <string name="answer2">Réponse 2</string>
+    <string name="answer3">Réponse 3</string>
+    <string name="answer4">Réponse 4</string>
+    <string name="cat">Catégorie</string>
+    <string name="difficulty">Difficulté</string>
+    <string name="cats">Catégories</string>
+    <string name="suspense">Suspense . . .</string>
+    <string name="whats_your_name">Entre ton nouveau nom</string>
+    <string name="motto">Un maximum de questions pour un maximum de connaissances</string>
+    <string name="content_description_logo">Logo de l\'application</string>
+    <string name="share_icon">Icône partage</string>
+    <string name="pen_icon">Icône crayon</string>
+    <string name="trash_icon">Icône corbeille</string>
+    <string name="plus_icon">Icône plus</string>
+    <string name="select_categories">Choix des catégories</string>
+    <string name="medium">Moyen</string>
+    <string name="hard">Difficile</string>
+    <string name="easy">Facile</string>
+    <string name="users_icon">Icône utilisateurs</string>
+    <string name="name">Nom</string>
+    <string name="user_score">Score</string>
+    <string name="players">Utilisateurs</string>
+    <string name="information">Information</string>
+    <string name="use_user_button">Utiliser ce profil</string>
+    <string name="select_all">Tout sélectionner</string>
+    <string name="text_confirm">Confirmer</string>
+    <string name="deselect_all">Désélectionnez tout</string>
+    <string name="bonus">Bonus</string>
+    <string name="invalid_name">Nom invalide</string>
+    <string name="back_arrow">Flèche retour</string>
+    <string name="new_user_name_dialog_title">Quel est ton nom ?</string>
+    <string name="game_game_over">Partie terminée</string>
+
+    <string name="niu_text">Toutes les fonctionnalités prévues pour les prochaines versions :\n- Nouveau mode de jeu\n- Nouveaux jeux prédéfinis\n- Des sons et musiques (normalement^^)\n\n\tEt bien sûr plus de questions et de catégories</string>
+
+    <string name="bonus_of">Bonus du joueur</string>
+    <string name="bonus1_description">Le premier bonus permet de sauter la question sur laquelle vous êtes (bien pratique si vous êtes coincé !)</string>
+    <string name="bonus2_description">Ce deuxième bonus est aussi bien pratique puisque si, pour une quelconque raison, vous avez un doute entre les propositions faites vous pouvez enlever une d\'elles pour y voir un peu plus clair</string>
+    <string name="bonus3_description">Vous trouvez la question actuelle trop dûre ? Avec ce dernier bonus pas de panique ! Il va, comme par magie redescendre le niveau d\'un cran (Difficile -> Moyen ; Moyen -> Facile) et voilà c\'est tout de suite plus facile non ?</string>
+
+    <plurals name="score_to_send">
+        <item quantity="one">J\'ai répondu correctement à %1$d questions sur %2$d en jouant à %3$d partie sur Jojoz Quizz\nEssaie de faire mieux !\nTélécharge le jeu par ici : https://play.google.com/store/apps/details?id=com.jojo.jojozquizz</item>
+        <item quantity="other">J\'ai répondu %1$d questions sur %2$d en jouant à %3$d parties sur Jojoz Quizz\nEssaie de faire mieux !\Télécharge le jeu par ici : https://play.google.com/store/apps/details?id=com.jojo.jojozquizz</item>
+    </plurals>
+
+    <plurals name="string_welcome_again">
+        <item quantity="one">Bonjour %1$s ! Lors de ta partie précédente, le nombre de bonne réponse était de %2$d en répondant à %3$d questions</item>
+        <item quantity="other">Bonjour %1$s ! Lors de ta partie précédente, le nombre de bonnes réponses était de %2$d en répondant à %3$d questions</item>
+    </plurals>
+
+    <string-array name="categories">
+        <item>Aéronautique</item>
+        <item>Autre</item>
+        <item>Animaux</item>
+        <item>Animés - mangas</item>
+        <item>Automobile</item>
+        <item>BDs</item>
+        <item>Célébrités</item>
+        <item>Cinéma</item>
+        <item>Citations</item>
+        <item>Cuisine</item>
+        <item>Economie</item>
+        <item>Français</item>
+        <item>Géographie</item>
+        <item>Histoire</item>
+        <item>Informatique</item>
+        <item>Réseaux et données</item>
+        <item>Jeux-vidéos</item>
+        <item>Langues étrangères</item>
+        <item>Littérature</item>
+        <item>Mathématiques</item>
+        <item>Musique</item>
+        <item>Nature</item>
+        <item>Photographie</item>
+        <item>Religion</item>
+        <item>Mythologie</item>
+        <item>Santé</item>
+        <item>Science</item>
+        <item>Sport</item>
+    </string-array>
+
+    <string-array name="difficulties">
+        <item>Facile</item>
+        <item>Moyen</item>
+        <item>Difficile</item>
+    </string-array>
+    <string name="reload_questions">Recharger les questions</string>
+    <string name="all_ok">OK</string>
+    <string name="all_cancel">Annuler</string>
+
+    <string name="settings_questions_langage">Langage des questions</string>
+    <string name="settings_privacy_policy">Politique de confidentialité</string>
+    <string name="settings_terms_of_service">Conditions générales d\'utilisation</string>
+    <string name="settings_rewrite_database_confirmation">Voulez-vous vraiment effacer puis réécrire toutes les questions ?</string>
+    <string name="settings_rewrite_database">Réécrire la base de données ?</string>
+
+    <string name="game_not_enough_bonus">Vous n\'avez pas assez de ce bonus !</string>
+    <string name="game_bonus_already_use_case">Déjà utilisé dans cette partie !</string>
+    <string name="game_bonus_3_lower_difficulty_case">La difficulté est la plus basse possible vous ne pouvez pas avoir une question plus facile</string>
+    <string name="game_end_game">Tu as bien répondu à %1$d questions sur %2$d\nScore : %3$d</string>
+    <string name="game_cant_use_bonus_last_question">Vous ne pouvez pas utiliser le bonus lors de la dernière question</string>
+    <string name="impossible_to_load_questions">Impossible d\'aller récuperer les questions depuis le serveur</string>
+    <string name="all_retry">Réessayer</string>
+    <string name="no_questions">La base de données interne ne contient aucune question</string>
+
+    <string name="update_available">Mise à jour disponible !</string>
+    <string name="update_available_text">Une nouvelle mise à jour est disponible sur le store !</string>
+    <string name="update">Mettre à jour</string>
+    <string name="later">Plus tard</string>
+    <string name="rewrite">Réécrire</string>
+    <string name="select_nothing_checked">Il faut choisir au moins une catégorie et une difficulté</string>
+    <string name="delete">Supprimer</string>
+    <string name="delete_user">Supprimer l\'utilisateur ?</string>
+    <string name="delete_user_message">Voulez-vous vraiment supprimer cet utilisateur ?</string>
+    <string name="delete_user_error">Il n\'y a plus qu\'un seul utilisateur vous ne pouvez pas enlever le dernier</string>
+    <string name="user_stats">Statistiques :\n- Score total : %1$d\n- Meilleur score : %2$d\n- Nombre de parties jouées : %3$d\n- Nombre de bonnes réponses / nombres de questions posées : %4$d/%5$d</string>
+</resources>

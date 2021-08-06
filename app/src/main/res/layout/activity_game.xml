@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/activity_game_question_text"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/caviar_font"
+        android:gravity="end"
+        android:maxHeight="200dp"
+        android:maxLines="6"
+        android:text="@string/question"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_difficulty_text" />
+
+    <TextView
+        android:id="@+id/number_of_questions_answered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="2dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+<<<<<<< HEAD
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_game_answer1_btn"
+        style="@style/Widget.MaterialComponents.Button"
+=======
+    <Button
+        android:id="@+id/activity_game_answer1_btn"
+>>>>>>> ae3c503 (flblblblbl)
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+<<<<<<< HEAD
+=======
+        android:fontFamily="@font/caviar_font"
+>>>>>>> ae3c503 (flblblblbl)
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"
+        android:text="@string/answer1"
+        android:textAllCaps="false"
+<<<<<<< HEAD
+=======
+        android:textSize="20sp"
+>>>>>>> ae3c503 (flblblblbl)
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <Button
+        android:id="@+id/activity_game_answer2_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/caviar_font"
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"
+        android:text="@string/answer2"
+        android:textAllCaps="false"
+<<<<<<< HEAD
+=======
+        android:textSize="20sp"
+>>>>>>> ae3c503 (flblblblbl)
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_answer1_btn" />
+
+    <Button
+        android:id="@+id/activity_game_answer3_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/caviar_font"
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"
+        android:text="@string/answer3"
+        android:textAllCaps="false"
+<<<<<<< HEAD
+=======
+        android:textSize="20sp"
+>>>>>>> ae3c503 (flblblblbl)
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_answer2_btn" />
+
+    <Button
+        android:id="@+id/activity_game_answer4_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/caviar_font"
+        android:paddingLeft="30dp"
+        android:paddingTop="5dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="5dp"
+        android:text="@string/answer4"
+        android:textAllCaps="false"
+<<<<<<< HEAD
+=======
+        android:textSize="20sp"
+>>>>>>> ae3c503 (flblblblbl)
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_answer3_btn" />
+
+    <TextView
+        android:id="@+id/activity_game_category_text"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/caviar_font"
+        android:gravity="start"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/cat"
+        android:textColor="@color/secondaryText"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_game_difficulty_text"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="@font/caviar_font"
+        android:gravity="end"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/difficulty"
+        android:textColor="@color/secondaryText"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_category_text" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageButton
+        android:id="@+id/button_use_bonus_1"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/button_use_bonus_2"
+        app:layout_constraintEnd_toStartOf="@+id/button_use_bonus_2"
+        app:layout_constraintTop_toTopOf="@+id/button_use_bonus_2"
+        app:srcCompat="@drawable/icon_bonus_skip_question"
+        android:contentDescription="@string/bonus_skip" />
+
+    <TextView
+        android:id="@+id/number_of_bonus1_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/caviar_font"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_use_bonus_1"
+        app:layout_constraintStart_toStartOf="@+id/button_use_bonus_1"
+        app:layout_constraintTop_toBottomOf="@+id/button_use_bonus_1" />
+
+    <ImageButton
+        android:id="@+id/button_use_bonus_2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="@string/bonus_2"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_answer4_btn"
+        app:srcCompat="@drawable/icon_bonus_less_answer" />
+
+    <TextView
+        android:id="@+id/number_of_bonus2_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/caviar_font"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_use_bonus_2"
+        app:layout_constraintStart_toStartOf="@+id/button_use_bonus_2"
+        app:layout_constraintTop_toBottomOf="@+id/button_use_bonus_2" />
+
+    <ImageButton
+        android:id="@+id/button_use_bonus_3"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/button_use_bonus_2"
+        app:layout_constraintStart_toEndOf="@+id/button_use_bonus_2"
+        app:layout_constraintTop_toTopOf="@+id/button_use_bonus_2"
+        app:srcCompat="@drawable/icon_bonus_easier"
+        android:contentDescription="@string/bonus_easier" />
+
+    <TextView
+        android:id="@+id/number_of_bonus3_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/caviar_font"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_use_bonus_3"
+        app:layout_constraintStart_toStartOf="@+id/button_use_bonus_3"
+        app:layout_constraintTop_toBottomOf="@+id/button_use_bonus_3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05109489" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9513382" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:progress="0"
+        android:progressTint="?attr/colorSecondary"
+        app:layout_constraintEnd_toStartOf="@+id/number_of_questions_answered"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/activity_game_question_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

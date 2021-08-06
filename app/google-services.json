@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "795185971125",
+    "firebase_url": "https://jojoz-quizz.firebaseio.com",
+    "project_id": "jojoz-quizz",
+    "storage_bucket": "jojoz-quizz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795185971125:android:d73914c71632891ffb63fc",
+        "android_client_info": {
+          "package_name": "com.jojo.jojozquizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795185971125-tb0lacf777opeu2tiopn6s9kk016i333.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jojo.jojozquizz",
+            "certificate_hash": "b8ce14752be3d35c74ad60a4d8ce1b6c0b363d82"
+          }
+        },
+        {
+          "client_id": "795185971125-0obopic7jm932t83r6ec26bli2t9obc7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg7KJgA5NQDz9MUe1fU5sVZTarBHCSGDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795185971125-0obopic7jm932t83r6ec26bli2t9obc7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
