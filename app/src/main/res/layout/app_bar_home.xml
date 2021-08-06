@@ -3,29 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
-=======
->>>>>>> ae3c503 (flblblblbl)
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<<<<<<< HEAD
          <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
              app:title="@string/string_title"
              style="@style/Widget.MaterialComponents.Toolbar.Primary"
-=======
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
->>>>>>> ae3c503 (flblblblbl)
             android:background="@color/colorPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>

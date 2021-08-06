@@ -15,10 +15,6 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-<<<<<<< HEAD
-=======
-        <option name="useQualifiedModuleNames" value="true" />
->>>>>>> ae3c503 (flblblblbl)
       </GradleProjectSettings>
     </option>
   </component>

@@ -7,7 +7,6 @@
     <string name="text_number_questions">Number of questions</string>
     <string name="multiple_choices">Multiple choices</string>
 
-<<<<<<< HEAD
     <string name="application_key" translatable="false">f4u6HBG1W3bd87u0468j</string>
 
     <string name="api_domain" translatable="false">http://192.168.0.41:3000/</string>
@@ -16,8 +15,6 @@
     <string name="api_endpoint_getCurrentVersion" translatable="false">jojozquizz/version/currentVersion/</string>
     <string name="api_endpoint_getServerKey" translatable="false">auth/serverKey</string>
 
-=======
->>>>>>> ae3c503 (flblblblbl)
     <string name="error_start1">You requested too many questions (max. 75)</string>
 
     <string name="text_positive_welcome_dialog">Let\'s go !</string>
@@ -31,11 +28,7 @@
         <item quantity="one">Hi %1$s ! During you last game, you answered %2$d question correctly out of %3$d</item>
         <item quantity="other">Hi %1$s ! During you last game, you answered %2$d questions correctly out of %3$d</item>
     </plurals>
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> ae3c503 (flblblblbl)
     <plurals name="score_to_send">
         <item quantity="one">I answered %1$d questions correctly out of %2$d by playing %3$d game on Jojoz Quizz\n Try to do better !\nDownload it here : https://play.google.com/store/apps/details?id=com.jojo.jojozquizz</item>
         <item quantity="other">I answered %1$d questions correctly out of %2$d by playing %3$d games on Jojoz Quizz\n Try to do better !\nDownload it here : https://play.google.com/store/apps/details?id=com.jojo.jojozquizz</item>
@@ -178,10 +171,7 @@
     <string name="delete_user_message">Do you really want to erase this user ?</string>
     <string name="delete_user_error">There is just one user left, you can\'t remove it</string>
     <string name="user_stats">Stats :\n- Total score : %1$d\n- High score : %2$d\n- Number of games played : %3$d\n- Number of questions answered correctly / number of questions asked : %4$d/%5$d</string>
-<<<<<<< HEAD
 <!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
-=======
->>>>>>> ae3c503 (flblblblbl)
 
 </resources>

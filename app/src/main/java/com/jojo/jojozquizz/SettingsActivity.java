@@ -1,15 +1,11 @@
 package com.jojo.jojozquizz;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> ae3c503 (flblblblbl)
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -19,16 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-<<<<<<< HEAD
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
-=======
->>>>>>> ae3c503 (flblblblbl)
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-<<<<<<< HEAD
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
@@ -38,23 +30,14 @@ import com.jojo.jojozquizz.model.Question;
 import com.jojo.jojozquizz.tools.BCrypt;
 import com.jojo.jojozquizz.tools.CombineKeys;
 import com.jojo.jojozquizz.tools.Global;
-=======
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
-import com.jojo.jojozquizz.model.Question;
->>>>>>> ae3c503 (flblblblbl)
 import com.jojo.jojozquizz.tools.QuestionsDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
 
-=======
->>>>>>> ae3c503 (flblblblbl)
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
 	private static final String TAG = "SettingsActivity";
@@ -65,15 +48,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 	private Button mReloadButton, mPrivacyButton, mTermsButton;
 	private RadioButton mFrButton, mEnButton;
 
-<<<<<<< HEAD
 	private String API_URL;
 
 	private RequestQueue mRequestQueue;
 	private Cache mCache;
 	private BasicNetwork mNetwork;
-=======
-	private final String API_URL = "https://nextfor.studio/";
->>>>>>> ae3c503 (flblblblbl)
 
 	private MutableLiveData<Integer> LAST_ID;
 
@@ -85,15 +64,12 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 		mContext = this;
 
 		mPreferences = this.getSharedPreferences("com.jojo.jojozquizz", MODE_PRIVATE);
-<<<<<<< HEAD
 		API_URL = getResources().getString(R.string.api_domain);
 
 		mCache = new DiskBasedCache(getCacheDir(), 1024 * 1024);
 		mNetwork = new BasicNetwork(new HurlStack());
 		mRequestQueue = new RequestQueue(mCache, mNetwork);
 		mRequestQueue.start();
-=======
->>>>>>> ae3c503 (flblblblbl)
 
 		mReloadButton = findViewById(R.id.settings_reload_questions);
 		mFrButton = findViewById(R.id.settings_radio_fr);
@@ -119,7 +95,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 		}
 
 		LAST_ID = new MutableLiveData<>();
-<<<<<<< HEAD
 		if (((Global) this.getApplication()).getProcessedKey() == null) {
 			Log.d(TAG, "onCreate: ouais ouais c'est bien nul");
 			String serverKeyRoute = getResources().getString(R.string.api_endpoint_getServerKey);
@@ -139,8 +114,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 		} else {
 			getLastIdFromServer();
 		}
-=======
->>>>>>> ae3c503 (flblblblbl)
 		LAST_ID.observe(this, new Observer<Integer>() {
 			@Override
 			public void onChanged(Integer integer) {
@@ -149,10 +122,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 				}
 			}
 		});
-<<<<<<< HEAD
 
-=======
->>>>>>> ae3c503 (flblblblbl)
 	}
 
 	@Override
@@ -173,16 +143,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 	}
 
 	private void getLastIdFromServer() {
-<<<<<<< HEAD
 		String lastIdRoute = getResources().getString(R.string.api_endpoint_getLastId);
 		String lang = mPreferences.getString("langage", "EN");
 
-=======
-		String lastIdRoute = "questions/getLastId/";
-		String lang = mPreferences.getString("langage", "EN");
-
-		RequestQueue requestQueue = Volley.newRequestQueue(this);
->>>>>>> ae3c503 (flblblblbl)
 		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API_URL + lastIdRoute + lang, null, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
@@ -202,11 +165,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 				}).show();
 			}
 		});
-<<<<<<< HEAD
 		mRequestQueue.add(jsonObjectRequest);
-=======
-		requestQueue.add(jsonObjectRequest);
->>>>>>> ae3c503 (flblblblbl)
 	}
 
 	public void addQuestions(int lastId) {
@@ -218,16 +177,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 			lastIdInDatabase = QuestionsDatabase.getInstance(this).QuestionDAO().getLastQuestion().getId() + 1;
 		}
 
-<<<<<<< HEAD
 		String apiRoute = getResources().getString(R.string.api_endpoint_getQuestion);
 		String lang = mPreferences.getString("langage", "EN");
 
-=======
-		String apiRoute = "questions/getQuestion/";
-		String lang = mPreferences.getString("langage", "EN");
-
-		RequestQueue requestQueue = Volley.newRequestQueue(this);
->>>>>>> ae3c503 (flblblblbl)
 		for (long i = lastIdInDatabase; i < lastId + 1; i++) {
 			String fullRoute = API_URL + apiRoute + lang + "/" + i;
 
@@ -245,7 +197,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 					} catch (JSONException ignored) {
 					}
 				}
-<<<<<<< HEAD
 			}, new Response.ErrorListener() {
 				@Override
 				public void onErrorResponse(VolleyError error) {
@@ -263,10 +214,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 				}
 			};
 			mRequestQueue.add(jsonObjectRequest);
-=======
-			}, null);
-			requestQueue.add(jsonObjectRequest);
->>>>>>> ae3c503 (flblblblbl)
 		}
 	}
 
@@ -279,18 +226,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 			builder.setTitle(getResources().getString(R.string.settings_rewrite_database))
 				.setMessage(getResources().getString(R.string.settings_rewrite_database_confirmation))
 				.setNegativeButton(getResources().getString(R.string.all_cancel), null)
-<<<<<<< HEAD
 				.setPositiveButton(getString(R.string.rewrite), (dialog, which) -> {
 					QuestionsDatabase.getInstance(mContext).QuestionDAO().deleteTable();
 					getLastIdFromServer();
-=======
-				.setPositiveButton(getString(R.string.rewrite), new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						QuestionsDatabase.getInstance(mContext).QuestionDAO().deleteTable();
-						getLastIdFromServer();
-					}
->>>>>>> ae3c503 (flblblblbl)
 				});
 			builder.show();
 

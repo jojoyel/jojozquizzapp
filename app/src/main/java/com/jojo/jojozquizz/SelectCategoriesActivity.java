@@ -12,10 +12,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-<<<<<<< HEAD
 import com.google.android.material.checkbox.MaterialCheckBox;
-=======
->>>>>>> ae3c503 (flblblblbl)
 import com.jojo.jojozquizz.model.Player;
 import com.jojo.jojozquizz.tools.CategoriesAdapter;
 import com.jojo.jojozquizz.tools.CategoriesHelper;
@@ -27,13 +24,8 @@ import java.util.List;
 public class SelectCategoriesActivity extends AppCompatActivity implements View.OnClickListener, CategoriesAdapter.CategoriesCheckListener {
 
 	private SwitchCompat mSelectAllSwitch;
-<<<<<<< HEAD
 	private MaterialCheckBox mCheckboxEasy, mCheckboxMedium, mCheckboxHard;
 	private MaterialCheckBox[] mCheckBoxes = new MaterialCheckBox[3];
-=======
-	private CheckBox mCheckboxEasy, mCheckboxMedium, mCheckboxHard;
-	private CheckBox[] mCheckBoxes = new CheckBox[3];
->>>>>>> ae3c503 (flblblblbl)
 
 	private RecyclerView mRecyclerView;
 	private CategoriesAdapter mCategoriesAdapter; // Adapter for RecyclerView
@@ -67,11 +59,7 @@ public class SelectCategoriesActivity extends AppCompatActivity implements View.
 		mCheckboxEasy = findViewById(R.id.activity_select_categories_checkbox_facile);
 		mCheckboxMedium = findViewById(R.id.activity_select_categories_checkbox_moyen);
 		mCheckboxHard = findViewById(R.id.activity_select_categories_checkbox_difficile);
-<<<<<<< HEAD
 		mCheckBoxes = new MaterialCheckBox[]{mCheckboxEasy, mCheckboxMedium, mCheckboxHard};
-=======
-		mCheckBoxes = new CheckBox[]{mCheckboxEasy, mCheckboxMedium, mCheckboxHard};
->>>>>>> ae3c503 (flblblblbl)
 
 		mCategoriesAdapter = new CategoriesAdapter(this, mCategoriesHelper.getCategories(), mOldCategoriesSelected);
 		mRecyclerView = findViewById(R.id.recycler_categories);

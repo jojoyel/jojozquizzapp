@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout>
+
 	<data>
-		<variable name="player" type="com.jojo.jojozquizz.model.Player"/>
+
+		<variable
+			name="player"
+			type="com.jojo.jojozquizz.model.Player" />
 	</data>
-	<androidx.constraintlayout.widget.ConstraintLayout
+
+	<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:id="@+id/constraint_layout_home"
@@ -20,7 +24,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
 			android:layout_marginEnd="50dp"
-			android:text="@{player.name, default=@string/string_title}"
+			android:text="@string/string_title"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,157 +152,3 @@
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-=======
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_layout_home"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_home">
-
-  <TextView
-      android:id="@+id/activity_main_text_title"
-      style="@style/ActivityTitle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="50dp"
-      android:text="@string/string_title"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <TextView
-      android:id="@+id/activity_main_greeting_text"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:padding="15dp"
-      android:text="@string/string_welcome"
-      android:textSize="18sp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/activity_main_text_title" />
-
-  <TextView
-      android:id="@+id/textView4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="30dp"
-      android:text="@string/hint_number_questions"
-      android:textSize="15sp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/text_display_name" />
-
-  <EditText
-      android:id="@+id/activity_main_number_questions_input"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"
-      android:width="250dp"
-      android:autofillHints="20"
-      android:hint="@string/text_number_questions"
-      android:inputType="number"
-      android:maxLength="2"
-      android:paddingStart="20dp"
-      android:paddingEnd="20dp"
-      android:singleLine="true"
-      android:text="@string/zero"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.503"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-  <Button
-      android:id="@+id/activity_main_select_categories_button"
-      style="@style/ButtonSecondaryStyle"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="15dp"
-      android:background="@drawable/rounded_corners_left_pattern"
-      android:paddingHorizontal="2dp"
-      android:paddingVertical="10dp"
-      android:text="@string/cats"
-      android:textSize="14sp"
-      app:layout_constraintEnd_toStartOf="@+id/guideline10"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="@+id/guideline12"
-      app:layout_constraintTop_toBottomOf="@+id/activity_main_number_questions_input" />
-
-  <Button
-      android:id="@+id/activity_main_start_button"
-      style="@style/ButtonPrimaryStyle"
-      android:layout_width="300dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="30dp"
-      android:background="@drawable/rounded_corners_pattern"
-      android:padding="15dp"
-      android:text="@string/string_start"
-      android:textSize="18sp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/activity_main_select_categories_button" />
-
-  <Button
-      android:id="@+id/activity_main_bonus_button"
-      style="@style/ButtonPrimaryStyle"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="15dp"
-      android:background="@drawable/rounded_corners_right_pattern"
-      android:text="@string/bonus"
-      app:layout_constraintEnd_toStartOf="@+id/guideline13"
-      app:layout_constraintStart_toStartOf="@+id/guideline10"
-      app:layout_constraintTop_toBottomOf="@+id/activity_main_number_questions_input" />
-
-  <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guideline10"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      app:layout_constraintGuide_percent="0.5" />
-
-  <TextView
-      android:id="@+id/text_display_name"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:text="@string/app_name"
-      android:textColor="?attr/colorSecondary"
-      android:textSize="24sp"
-      android:textStyle="bold"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/activity_main_greeting_text" />
-
-  <ImageButton
-      android:id="@+id/button_users"
-      android:layout_width="40dp"
-      android:layout_height="40dp"
-      android:layout_marginStart="32dp"
-      android:background="#00FFFFFF"
-      android:contentDescription="@string/users_icon"
-      android:scaleType="centerInside"
-      app:layout_constraintBottom_toBottomOf="@+id/text_display_name"
-      app:layout_constraintStart_toEndOf="@+id/text_display_name"
-      app:layout_constraintTop_toTopOf="@+id/text_display_name"
-      app:srcCompat="@drawable/users_icon" />
-
-  <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guideline12"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      app:layout_constraintGuide_percent="0.16" />
-
-  <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guideline13"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      app:layout_constraintGuide_percent="0.84" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> ae3c503 (flblblblbl)

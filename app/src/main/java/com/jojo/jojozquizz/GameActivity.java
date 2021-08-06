@@ -53,11 +53,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 	private int mNumberOfQuestions, trueIndex;
 	private boolean mEnableTouchEvents;
 	private Bonus mBonus1, mBonus2, mBonus3;
-<<<<<<< HEAD
 	private List<String> mCategoriesSelectedProcessed, mDifficultiesSelectedProcessed;
-=======
-	private List<String> categoriesSelectedProcessed, difficultiesSelectedProcessed;
->>>>>>> ae3c503 (flblblblbl)
 
 	private int mTotalQuestions; // Number of questions to reach
 	private int mQuestionsAnswered = 0; // Number of questions answered by the player
@@ -117,7 +113,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 		String categoriesSelected = mPlayer.getCategoriesSelected(); // Categories selected by the player, non processed (100110)
 		String difficultiesSelected = mPlayer.getDifficultiesSelected(); // Difficulties selected by the player, non processed
 
-<<<<<<< HEAD
 		mCategoriesSelectedProcessed = mCategoriesHelper.getProcessedCategories(categoriesSelected); // Categories selected processed, so tranformed to String list
 		List<Integer> categoriesIndex = new ArrayList<>(); // List of categories selected into string
 		for (String c : mCategoriesSelectedProcessed) {
@@ -127,17 +122,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 		mDifficultiesSelectedProcessed = mCategoriesHelper.getProcessedDifficulties(difficultiesSelected);
 		List<Integer> difficultiesIndex = new ArrayList<>();
 		for (String d : mDifficultiesSelectedProcessed) {
-=======
-		categoriesSelectedProcessed = mCategoriesHelper.getProcessedCategories(categoriesSelected); // Categories selected processed, so tranformed to String list
-		List<Integer> categoriesIndex = new ArrayList<>(); // List of categories selected into string
-		for (String c : categoriesSelectedProcessed) {
-			categoriesIndex.add(categories.indexOf(c));
-		}
-
-		difficultiesSelectedProcessed = mCategoriesHelper.getProcessedDifficulties(difficultiesSelected);
-		List<Integer> difficultiesIndex = new ArrayList<>();
-		for (String d : difficultiesSelectedProcessed) {
->>>>>>> ae3c503 (flblblblbl)
 			difficultiesIndex.add(difficulties.indexOf(d));
 		}
 
