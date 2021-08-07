@@ -8,6 +8,9 @@
     <string name="multiple_choices">Multiple choices</string>
 
     <string name="application_key" translatable="false">f4u6HBG1W3bd87u0468j</string>
+    <string name="ad_id_bonus1" translatable="false">ca-app-pub-5050054249389989/9324639067</string>
+    <string name="ad_id_bonus2" translatable="false">ca-app-pub-5050054249389989/9211204402</string>
+    <string name="ad_id_bonus3" translatable="false">ca-app-pub-5050054249389989/6686582029</string>
 
     <string name="api_domain" translatable="false">http://192.168.0.41:3000/</string>
     <string name="api_endpoint_getLastId" translatable="false">jojozquizz/questions/lastId/</string>
@@ -171,7 +174,5 @@
     <string name="delete_user_message">Do you really want to erase this user ?</string>
     <string name="delete_user_error">There is just one user left, you can\'t remove it</string>
     <string name="user_stats">Stats :\n- Total score : %1$d\n- High score : %2$d\n- Number of games played : %3$d\n- Number of questions answered correctly / number of questions asked : %4$d/%5$d</string>
-<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

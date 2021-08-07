@@ -44,8 +44,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.3.0"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.gms:google-services:4.3.5'
-    implementation 'com.google.android.gms:play-services-ads:19.8.0'
+    implementation 'com.google.gms:google-services:4.3.9'
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
 
     implementation 'com.google.android.material:material:1.4.0'
 
