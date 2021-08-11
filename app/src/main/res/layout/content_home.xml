@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+
+		<variable
+			name="handler"
+			type="com.jojo.jojozquizz.tools.ClickHandler" />
 
 		<variable
 			name="player"
 			type="com.jojo.jojozquizz.model.Player" />
 	</data>
 
-	<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/constraint_layout_home"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -45,7 +49,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
-			android:text="@string/app_name"
+			android:text="@{player.name}"
 			android:textColor="?attr/colorSecondary"
 			android:textSize="28sp"
 			android:textStyle="bold"
@@ -77,7 +81,7 @@
 			app:layout_constraintEnd_toEndOf="@id/guideline13"
 			app:layout_constraintHorizontal_bias="0.5"
 			app:layout_constraintStart_toStartOf="@id/guideline12"
-			app:layout_constraintTop_toBottomOf="@+id/text_display_name">
+			app:layout_constraintTop_toBottomOf="@+id/button_users">
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/activity_main_number_questions_input"
@@ -122,6 +126,7 @@
 			android:layout_width="300dp"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="25dp"
+			android:onClick="@{handler::onButtonClick}"
 			android:padding="15dp"
 			android:text="@string/string_start"
 			android:textSize="18sp"

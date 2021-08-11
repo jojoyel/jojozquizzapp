@@ -62,7 +62,7 @@
 
     <string name="niu_text">Toutes les fonctionnalités prévues pour les prochaines versions :\n- Nouveau mode de jeu\n- Nouveaux jeux prédéfinis\n- Des sons et musiques (normalement^^)\n\n\tEt bien sûr plus de questions et de catégories</string>
 
-    <string name="bonus_of">Bonus du joueur</string>
+    <string name="bonus_of">Bonus du joueur\n%s</string>
     <string name="bonus1_description">Le premier bonus permet de sauter la question sur laquelle vous êtes (bien pratique si vous êtes coincé !)</string>
     <string name="bonus2_description">Ce deuxième bonus est aussi bien pratique puisque si, pour une quelconque raison, vous avez un doute entre les propositions faites vous pouvez enlever une d\'elles pour y voir un peu plus clair</string>
     <string name="bonus3_description">Vous trouvez la question actuelle trop dûre ? Avec ce dernier bonus pas de panique ! Il va, comme par magie redescendre le niveau d\'un cran (Difficile -> Moyen ; Moyen -> Facile) et voilà c\'est tout de suite plus facile non ?</string>

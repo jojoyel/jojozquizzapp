@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jojo.jojozquizz">
+    package="com.jojo.jojozquizz" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:hardwareAccelerated="false"
+        android:name=".tools.Global"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/icon_jq"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icon_jq_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JojozQuizz"
-        android:name=".tools.Global">
-        <activity android:name=".SettingsActivity"
+        android:usesCleartextTraffic="true" >
+	    <activity
+            android:name=".SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PlayersInformationActivity"
@@ -28,7 +29,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

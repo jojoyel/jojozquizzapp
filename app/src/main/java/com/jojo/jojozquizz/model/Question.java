@@ -31,6 +31,12 @@ public class Question implements Serializable {
 	private int mCategory;
 
 	@Ignore
+	private String mStringCategory;
+
+	@Ignore
+	private String mStringDifficulty;
+
+	@Ignore
 	private String mTrueAnswer;
 
 	@ColumnInfo(name = "difficulty")
@@ -109,8 +115,22 @@ public class Question implements Serializable {
 		return mCategory;
 	}
 
-	public void setCategory(int categorie) {
-		mCategory = categorie;
+	public void setCategory(int category) {
+		mCategory = category;
+	}
+
+	public void setStringCategory(String category) { mStringCategory = category;}
+
+	public String getStringCategory() {
+		return mStringCategory;
+	}
+
+	public void setStringDifficulty(String stringDifficulty) {
+		mStringDifficulty = stringDifficulty;
+	}
+
+	public String getStringDifficulty() {
+		return mStringDifficulty;
 	}
 
 	public String getTrueAnswer() {

@@ -154,4 +154,20 @@ public class Player {
 	public void setBonus(String bonus) {
 		this.bonus = bonus;
 	}
+
+	public String getBonus1() {
+		return bonus.split("-/-")[0];
+	}
+
+	public String getBonus2() {
+		return bonus.split("-/-")[1];
+	}
+
+	public String getBonus3() {
+		return bonus.split("-/-")[2];
+	}
+
+	public void incrementBonus1() {
+
+	}
 }

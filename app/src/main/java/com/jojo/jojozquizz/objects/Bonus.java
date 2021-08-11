@@ -6,8 +6,6 @@ public class Bonus {
 
 	private int number;
 
-	private String description;
-
 	private boolean alreadyUse;
 
 	public Bonus() {
@@ -33,14 +31,6 @@ public class Bonus {
 
 	public void setNumber(int number) {
 		this.number = number;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public void setAlreadyUse(boolean alreadyUse) {

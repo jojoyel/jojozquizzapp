@@ -13,7 +13,7 @@
 
 		<item name="android:fontFamily">@font/caviar_font</item>
 	</style>
-	
+
 	<style name="ActivityTitle">
 		<item name="android:textColor">@color/colorPrimary</item>
 		<item name="android:textSize">30sp</item>
@@ -53,5 +53,11 @@
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:textStyle">bold</item>
 	</style>
+	<style name="Theme.JojozQuizz.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+	<style name="Theme.JojozQuizz.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+	<style name="Theme.JojozQuizz.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -18,16 +18,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.jojo.jojozquizz.databinding.ActivityGameBinding;
 import com.jojo.jojozquizz.model.Player;
 import com.jojo.jojozquizz.model.Question;
 import com.jojo.jojozquizz.model.QuestionBank;
 import com.jojo.jojozquizz.objects.Bonus;
 import com.jojo.jojozquizz.tools.CategoriesHelper;
+import com.jojo.jojozquizz.tools.ClickHandler;
 import com.jojo.jojozquizz.tools.PlayersDAO;
 import com.jojo.jojozquizz.tools.PlayersDatabase;
 import com.jojo.jojozquizz.tools.QuestionsDatabase;
@@ -39,13 +42,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 	private static final String TAG = "GameActivity";
 
 	private QuestionBank mQuestionBank;
 	private Question mCurrentQuestion;
-	private TextView mQuestionTextView, mCategory, mDifficulty, mNumberOfQuestionsAnsweredText, mNumberOfBonus1Left, mNumberOfBonus2Left, mNumberOfBonus3Left;
+	private TextView mQuestionTextView, mNumberOfQuestionsAnsweredText, mNumberOfBonus1Left, mNumberOfBonus2Left, mNumberOfBonus3Left;
 	private Button mAnswerButton1, mAnswerButton2, mAnswerButton3, mAnswerButton4;
 	private Button[] mAllAnswerButton;
 	private ProgressBar mProgressBar;
@@ -72,6 +75,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 	SharedPreferences mPreferences;
 
+	ActivityGameBinding mBinding;
+
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		return mEnableTouchEvents && super.dispatchTouchEvent(ev);
@@ -81,6 +86,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+
+		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
+		mBinding.setHandler(this);
 
 		Intent intent = getIntent();
 		mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(intent.getIntExtra("userId", 1));
@@ -161,42 +169,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 		mBonus3 = new Bonus(Integer.parseInt(mUserBonus.get(2)), getString(R.string.bonus_easier));
 
 		// Initializing GUI
-		mQuestionTextView = findViewById(R.id.activity_game_question_text);
-		mAnswerButton1 = findViewById(R.id.activity_game_answer1_btn);
-		mAnswerButton2 = findViewById(R.id.activity_game_answer2_btn);
-		mAnswerButton3 = findViewById(R.id.activity_game_answer3_btn);
-		mAnswerButton4 = findViewById(R.id.activity_game_answer4_btn);
-		mCategory = findViewById(R.id.activity_game_category_text);
-		mDifficulty = findViewById(R.id.activity_game_difficulty_text);
+		mQuestionTextView = mBinding.activityGameQuestionText;
+		mAnswerButton1 = mBinding.activityGameAnswer1Btn;
+		mAnswerButton2 = mBinding.activityGameAnswer2Btn;
+		mAnswerButton3 = mBinding.activityGameAnswer3Btn;
+		mAnswerButton4 = mBinding.activityGameAnswer4Btn;
 		mUseBonus1 = findViewById(R.id.button_use_bonus_1);
 		mUseBonus2 = findViewById(R.id.button_use_bonus_2);
 		mUseBonus3 = findViewById(R.id.button_use_bonus_3);
 		mNumberOfQuestionsAnsweredText = findViewById(R.id.number_of_questions_answered);
-		mNumberOfBonus1Left = findViewById(R.id.number_of_bonus1_left);
-		mNumberOfBonus2Left = findViewById(R.id.number_of_bonus2_left);
-		mNumberOfBonus3Left = findViewById(R.id.number_of_bonus3_left);
-		mProgressBar = findViewById(R.id.progressBar);
+		mNumberOfBonus1Left = mBinding.numberOfBonus1Left;
+		mNumberOfBonus2Left = mBinding.numberOfBonus2Left;
+		mNumberOfBonus3Left = mBinding.numberOfBonus3Left;
+		mProgressBar = mBinding.progressBar;
 
 		mNumberOfQuestionsAnsweredText.setText(String.format("1/%s", mTotalQuestions));
 
 		mAllAnswerButton = new Button[]{mAnswerButton1, mAnswerButton2, mAnswerButton3, mAnswerButton4};
-
-		int index = 0;
-		for (Button button : mAllAnswerButton) {
-			button.setTag(index);
-			button.setOnClickListener(this);
-			index++;
-		}
-
-		mUseBonus1.setTag(4);
-		mUseBonus2.setTag(5);
-		mUseBonus3.setTag(6);
-		mUseBonus1.setOnClickListener(this);
-		mUseBonus2.setOnClickListener(this);
-		mUseBonus3.setOnClickListener(this);
-		mUseBonus1.setOnLongClickListener(this);
-		mUseBonus2.setOnLongClickListener(this);
-		mUseBonus3.setOnLongClickListener(this);
 
 		mProgressBar.setMax(mTotalQuestions);
 		mNumberOfBonus1Left.setText(String.valueOf(mBonus1.getNumber()));
@@ -249,8 +238,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	private void displayQuestion() {
-		mQuestionTextView.setText(mCurrentQuestion.getQuestion());
-		mQuestionTextView.setVisibility(View.VISIBLE);
+		Question questionToShow = new Question();
+		questionToShow.setQuestion(mCurrentQuestion.getQuestion());
+		questionToShow.setStringCategory(mCategoriesHelper.getCategories()[mCurrentQuestion.getCategory()]);
+		questionToShow.setStringDifficulty(mCategoriesHelper.getDifficulties()[mCurrentQuestion.getDifficulty()]);
+
 		String valueTrue = mCurrentQuestion.getChoiceList().get(0);
 		List<String> mNewChoiceList = new ArrayList<>(mCurrentQuestion.getChoiceList());
 
@@ -271,93 +263,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 			index++;
 		}
 
-		mCategory.setText(Arrays.asList(mCategoriesHelper.getCategories()).get(mCurrentQuestion.getCategory()));
-		mDifficulty.setText(Arrays.asList(mCategoriesHelper.getDifficulties()).get(mCurrentQuestion.getDifficulty()));
+		questionToShow.setChoiceList(mNewChoiceList);
+		mBinding.setQuestion(questionToShow);
 		mCurrentQuestion.setAnswerIndex(trueIndex);
-	}
-
-	/**
-	 * 3 possibilitees, soit le bouton clique est un de ceux pour repondre, dans ce cas des valeurs
-	 * sont modifiees, la bonne réponse est affichee
-	 *
-	 * @param v view
-	 */
-	@Override
-	public void onClick(View v) {
-		final int buttonClick = (int) v.getTag();
-		if (buttonClick == 0 || buttonClick == 1 || buttonClick == 2 || buttonClick == 3) {
-			mQuestionsAnswered += 1;
-			mEnableTouchEvents = false;
-			if (--mNumberOfQuestions == 0) {
-				suspense();
-				new Handler().postDelayed(() -> {
-					changeButtons(buttonClick);
-					new Handler().postDelayed(() -> {
-						mEnableTouchEvents = true;
-						stopGame();
-					}, 1500);
-				}, 4000);
-			} else {
-				changeButtons(buttonClick);
-				new Handler().postDelayed(() -> {
-					mCurrentQuestion = mQuestionBank.getNextQuestion();
-					mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
-					displayQuestion();
-					setStyleDefault();
-					String textToShow = (mQuestionsAnswered + 1) + getString(R.string.slash) + mTotalQuestions;
-					mNumberOfQuestionsAnsweredText.setText(textToShow);
-					mProgressBar.setProgress(mQuestionsAnswered);
-					mProgressBar.setProgress(mQuestionsAnswered);
-					mEnableTouchEvents = true;
-				}, 1500);
-			}
-		} else if (buttonClick == 4) {
-			if (mBonus1.isAlreadyUse()) toastBonusAlreadyUsed();
-			else if (mProgressBar.getProgress() == mTotalQuestions - 1) {
-				Toast.makeText(this, getResources().getString(R.string.game_cant_use_bonus_last_question), Toast.LENGTH_SHORT).show();
-			} else {
-				mBonus1.setAlreadyUse(true);
-				bonusSkipQuestion();
-				mUseBonus1.setVisibility(View.INVISIBLE);
-				mNumberOfBonus1Left.setVisibility(View.INVISIBLE);
-			}
-		} else if (buttonClick == 5) {
-			if (mBonus2.isAlreadyUse()) toastBonusAlreadyUsed();
-			else {
-				mBonus2.setAlreadyUse(true);
-				bonusClearAnswers();
-				mUseBonus2.setVisibility(View.INVISIBLE);
-				mNumberOfBonus2Left.setVisibility(View.INVISIBLE);
-			}
-		} else if (buttonClick == 6) {
-			if (mBonus3.isAlreadyUse()) toastBonusAlreadyUsed();
-			else {
-				boolean bonusUsed = bonusEasier();
-				if (bonusUsed) {
-					mBonus3.setAlreadyUse(true);
-					mUseBonus3.setVisibility(View.INVISIBLE);
-					mNumberOfBonus3Left.setVisibility(View.INVISIBLE);
-				}
-			}
-		}
-	}
-
-	@Override
-	public boolean onLongClick(View v) {
-		final int buttonClick = (int) v.getTag();
-
-		if (buttonClick == 4 || buttonClick == 5 || buttonClick == 6) {
-			ViewGroup viewGroup = findViewById(android.R.id.content);
-			View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_bonus, viewGroup, false);
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setView(dialogView)
-				.setCancelable(false)
-				.setPositiveButton(getResources().getString(R.string.all_ok), (dialog, which) -> {
-				});
-			final AlertDialog alertDialog = builder.create();
-			alertDialog.show();
-		}
-		return false;
 	}
 
 	/**
@@ -478,24 +386,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 	 * de la même façon, si ce que l'utilisateur a répondu est faux, le bouton virera au noir et la
 	 * bonne réponse sera affichée grâce à styleGoodButton()
 	 *
-	 * @param answerIndex
+	 * @param id
 	 */
-	private void changeButtons(int answerIndex) {
+	private void changeButtons(int id) {
+		int[] buttons = {R.id.activity_game_answer1_btn, R.id.activity_game_answer2_btn, R.id.activity_game_answer3_btn, R.id.activity_game_answer4_btn};
+
 		for (Button button : mAllAnswerButton) {
 			button.setBackgroundColor(getResources().getColor(R.color.colorLightPrimary));
 			button.setTextColor(getResources().getColor(R.color.colorPrimary));
 		}
-		if (answerIndex != mCurrentQuestion.getAnswerIndex()) {
-			if (answerIndex == 0) {
+		if (id != buttons[mCurrentQuestion.getAnswerIndex()]) {
+			if (id == R.id.activity_game_answer1_btn) {
 				mAnswerButton1.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
 				mAnswerButton1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (answerIndex == 1) {
+			} else if (id == R.id.activity_game_answer2_btn) {
 				mAnswerButton2.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
 				mAnswerButton2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (answerIndex == 2) {
+			} else if (id == R.id.activity_game_answer3_btn) {
 				mAnswerButton3.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
 				mAnswerButton3.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (answerIndex == 3) {
+			} else if (id == R.id.activity_game_answer4_btn) {
 				mAnswerButton4.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
 				mAnswerButton4.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
 			}
@@ -616,5 +526,65 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 				setResult(RESULT_OK, intent);
 				finish();
 			}).setCancelable(false).setOnDismissListener(dialog -> stopGame()).create().show();
+	}
+
+	@Override
+	public void onButtonClick(View v) {
+		int id = v.getId();
+		if (id == R.id.activity_game_answer1_btn || id == R.id.activity_game_answer2_btn || id == R.id.activity_game_answer3_btn || id == R.id.activity_game_answer4_btn) {
+			mQuestionsAnswered += 1;
+			mEnableTouchEvents = false;
+			if (--mNumberOfQuestions == 0) {
+				suspense();
+				new Handler().postDelayed(() -> {
+					changeButtons(id);
+					new Handler().postDelayed(() -> {
+						mEnableTouchEvents = true;
+						stopGame();
+					}, 1500);
+				}, 4000);
+			} else {
+				changeButtons(id);
+				new Handler().postDelayed(() -> {
+					mCurrentQuestion = mQuestionBank.getNextQuestion();
+					mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
+					displayQuestion();
+					setStyleDefault();
+					String textToShow = (mQuestionsAnswered + 1) + getString(R.string.slash) + mTotalQuestions;
+					mNumberOfQuestionsAnsweredText.setText(textToShow);
+					mProgressBar.setProgress(mQuestionsAnswered);
+					mProgressBar.setProgress(mQuestionsAnswered);
+					mEnableTouchEvents = true;
+				}, 1500);
+			}
+		} else if (id == R.id.button_use_bonus_1) {
+			if (mBonus1.isAlreadyUse()) toastBonusAlreadyUsed();
+			else if (mProgressBar.getProgress() == mTotalQuestions - 1) {
+				Toast.makeText(this, getResources().getString(R.string.game_cant_use_bonus_last_question), Toast.LENGTH_SHORT).show();
+			} else {
+				mBonus1.setAlreadyUse(true);
+				bonusSkipQuestion();
+				mUseBonus1.setVisibility(View.INVISIBLE);
+				mNumberOfBonus1Left.setVisibility(View.INVISIBLE);
+			}
+		} else if (id == R.id.button_use_bonus_2) {
+			if (mBonus2.isAlreadyUse()) toastBonusAlreadyUsed();
+			else {
+				mBonus2.setAlreadyUse(true);
+				bonusClearAnswers();
+				mUseBonus2.setVisibility(View.INVISIBLE);
+				mNumberOfBonus2Left.setVisibility(View.INVISIBLE);
+			}
+		} else if (id == R.id.button_use_bonus_3) {
+			if (mBonus3.isAlreadyUse()) toastBonusAlreadyUsed();
+			else {
+				boolean bonusUsed = bonusEasier();
+				if (bonusUsed) {
+					mBonus3.setAlreadyUse(true);
+					mUseBonus3.setVisibility(View.INVISIBLE);
+					mNumberOfBonus3Left.setVisibility(View.INVISIBLE);
+				}
+			}
+		}
 	}
 }
