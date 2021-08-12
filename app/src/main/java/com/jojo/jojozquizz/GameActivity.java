@@ -5,10 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -92,6 +90,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		Intent intent = getIntent();
 		mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(intent.getIntExtra("userId", 1));
+		mBinding.setPlayer(mPlayer);
 
 		mNumberOfQuestions = intent.getIntExtra("numberOfQuestions", 20);
 		mTotalQuestions = mNumberOfQuestions;
@@ -174,10 +173,10 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mAnswerButton2 = mBinding.activityGameAnswer2Btn;
 		mAnswerButton3 = mBinding.activityGameAnswer3Btn;
 		mAnswerButton4 = mBinding.activityGameAnswer4Btn;
-		mUseBonus1 = findViewById(R.id.button_use_bonus_1);
-		mUseBonus2 = findViewById(R.id.button_use_bonus_2);
-		mUseBonus3 = findViewById(R.id.button_use_bonus_3);
-		mNumberOfQuestionsAnsweredText = findViewById(R.id.number_of_questions_answered);
+		mUseBonus1 = mBinding.buttonUseBonus1;
+		mUseBonus2 = mBinding.buttonUseBonus2;
+		mUseBonus3 = mBinding.buttonUseBonus3;
+		mNumberOfQuestionsAnsweredText = mBinding.numberOfQuestionsAnswered;
 		mNumberOfBonus1Left = mBinding.numberOfBonus1Left;
 		mNumberOfBonus2Left = mBinding.numberOfBonus2Left;
 		mNumberOfBonus3Left = mBinding.numberOfBonus3Left;
@@ -199,6 +198,18 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		this.displayQuestion();
 
 		mEnableTouchEvents = true;
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mEnableTouchEvents = true;
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		mEnableTouchEvents = false;
 	}
 
 	private void calculateScore(boolean isActualQuestionValidated) {

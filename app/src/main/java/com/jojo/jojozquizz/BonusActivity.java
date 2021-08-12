@@ -213,9 +213,4 @@ public class BonusActivity extends AppCompatActivity implements ClickHandler {
 			quitActivity();
 		}
 	}
-
-	@Override
-	public void onLongButtonClick(View v) {
-
-	}
 }

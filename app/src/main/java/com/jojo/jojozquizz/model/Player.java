@@ -155,19 +155,15 @@ public class Player {
 		this.bonus = bonus;
 	}
 
-	public String getBonus1() {
-		return bonus.split("-/-")[0];
+	public int getBonus1() {
+		return Integer.parseInt(bonus.split("-/-")[0]);
 	}
 
-	public String getBonus2() {
-		return bonus.split("-/-")[1];
+	public int getBonus2() {
+		return Integer.parseInt(bonus.split("-/-")[1]);
 	}
 
-	public String getBonus3() {
-		return bonus.split("-/-")[2];
-	}
-
-	public void incrementBonus1() {
-
+	public int getBonus3() {
+		return Integer.parseInt(bonus.split("-/-")[2]);
 	}
 }
