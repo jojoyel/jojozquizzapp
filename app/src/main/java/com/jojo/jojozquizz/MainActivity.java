@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -63,9 +62,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	final Context mContext = this;
 
-	TextView mGreetingText, mNameText;
 	EditText mNumberOfQuestionsInput;
-	ImageButton mUsersButton;
 
 	SharedPreferences mPreferences;
 
@@ -99,10 +96,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		mRequestQueue = new RequestQueue(mCache, mNetwork);
 		mRequestQueue.start();
 
-		mGreetingText = findViewById(R.id.activity_main_greeting_text);
-		mNameText = findViewById(R.id.text_display_name);
-		mUsersButton = findViewById(R.id.button_users);
-		mNumberOfQuestionsInput = findViewById(R.id.activity_main_number_questions_input);
+		mNumberOfQuestionsInput = mBinding.activityMainNumberQuestionsInput;
 
 		isFirstTime = PlayersDatabase.getInstance(this).PlayersDAO().getAllPlayers().isEmpty();
 
@@ -122,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 			askUsernameDialog();
 		} else {
 			mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(mPreferences.getInt("currentUserId", 1));
-			updateUI(mPlayer);
+			mBinding.setPlayer(mPlayer);
 			mBinding.setPlayer(mPlayer);
 		}
 
@@ -130,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 		LAST_ID = new MutableLiveData<>();
 		if (((Global) this.getApplication()).getProcessedKey() == null) {
-			Log.d(TAG, "onCreate: ouais ouais c'est bien nul");
 			String serverKeyRoute = getResources().getString(R.string.api_endpoint_getServerKey);
 
 			JsonObjectRequest serverKeyRequest = new JsonObjectRequest(Request.Method.GET, API_URL + serverKeyRoute, null,
@@ -139,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 						String serverKey = response.getString("key");
 						String combinedKey = CombineKeys.combineKeys(getResources().getString(R.string.application_key), serverKey);
 						((Global) mContext.getApplicationContext()).setProcessedKey(combinedKey);
-						Log.d(TAG, "onResponse: " + serverKey);
 						getLastIdFromServer();
 					} catch (JSONException ignore) {
 					}
@@ -191,10 +183,10 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(mPreferences.getInt("currentUserId", 1));
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == GAME_ACTIVITY_REQUEST_CODE) {
-			updateUI(mPlayer);
+			mBinding.setPlayer(mPlayer);
 		} else if (requestCode == USERS_ACTIVITY_REQUEST_CODE) {
 			mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(mPreferences.getInt("currentUserId", 1));
-			updateUI(mPlayer);
+			mBinding.setPlayer(mPlayer);
 		}
 	}
 
@@ -302,23 +294,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		mRequestQueue.add(jsonObjectRequest);
 	}
 
-	private void updateUI(Player player) {
-		String[] lastGame = player.getLastGame().split("-/-");
-		int lastGameValidatedQuestions = Integer.parseInt(lastGame[0]);
-		int lastGameTotalQuestions = Integer.parseInt(lastGame[1]);
-
-		String textToShow;
-
-		if (lastGameTotalQuestions > 0) {
-			textToShow = getResources().getQuantityString(R.plurals.string_welcome_again, lastGameValidatedQuestions, player.getName(), lastGameValidatedQuestions, lastGameTotalQuestions);
-			mNumberOfQuestionsInput.setText(String.valueOf(lastGameTotalQuestions));
-		} else {
-			textToShow = getString(R.string.string_welcome);
-			mNumberOfQuestionsInput.setText(String.valueOf(20));
-		}
-		mGreetingText.setText(textToShow);
-	}
-
 	@Override
 	public void applyText(String name) {
 		Pattern pattern = Pattern.compile(NameDialog.REGEX);
@@ -332,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 			mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(mPreferences.getInt("currentUserId", 1));
 
 			isFirstTime = false;
-			updateUI(player);
+			mBinding.setPlayer(player);
 		}
 	}
 

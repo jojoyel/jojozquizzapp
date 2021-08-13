@@ -166,4 +166,12 @@ public class Player {
 	public int getBonus3() {
 		return Integer.parseInt(bonus.split("-/-")[2]);
 	}
+
+	public int getLastGameValidated() {
+		return Integer.parseInt(this.lastGame.split("-/-")[0]);
+	}
+
+	public int getLastGameLength() {
+		return Integer.parseInt(this.lastGame.split("-/-")[1]);
+	}
 }
