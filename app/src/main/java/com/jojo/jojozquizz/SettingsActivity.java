@@ -201,7 +201,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 				@Override
 				public void onErrorResponse(VolleyError error) {
 					//TODO: Translate
-					Snackbar.make(findViewById(R.id.constraint_layout_home), "Impossible de récupérer les questions du serveur, réessayez plus tard", Snackbar.LENGTH_LONG).show();
+					Snackbar.make(findViewById(R.id.drawer_layout), "Impossible de récupérer les questions du serveur, réessayez plus tard", Snackbar.LENGTH_LONG).show();
 				}
 			}) {
 				@Override

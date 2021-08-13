@@ -226,16 +226,12 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 				scoreToAdd += isActualQuestionValidated ? +3 : -1;
 		}
 
-		if (mCombo == 0 && isActualQuestionValidated) {
-			mCombo = 1;
-		} else if (mCombo > 0 && isActualQuestionValidated) {
+		if (mCombo == 0 && isActualQuestionValidated || mCombo > 0 && isActualQuestionValidated) {
 			mCombo++;
-		} else if (mCombo < 0 && isActualQuestionValidated) {
+		} else if (mCombo < 0 && isActualQuestionValidated || mCombo > 0 && !isActualQuestionValidated) {
 			mCombo = 0;
 		} else if (mCombo == 0 && !isActualQuestionValidated) {
 			mCombo = -1;
-		} else if (mCombo > 0 && !isActualQuestionValidated) {
-			mCombo = 0;
 		} else if (mCombo < 0 && !isActualQuestionValidated) {
 			mCombo += mQuestionsAnswered % 2 == 0 ? -1 : 0;
 		}

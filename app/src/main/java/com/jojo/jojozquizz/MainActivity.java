@@ -32,7 +32,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.snackbar.Snackbar;
-import com.jojo.jojozquizz.databinding.ContentHomeBinding;
+import com.jojo.jojozquizz.databinding.ActivityMainBinding;
 import com.jojo.jojozquizz.dialogs.NameDialog;
 import com.jojo.jojozquizz.dialogs.NiuDialog;
 import com.jojo.jojozquizz.model.Player;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	MutableLiveData<Integer> LAST_ID;
 
-	ContentHomeBinding mBinding;
+	ActivityMainBinding mBinding;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		mBinding = DataBindingUtil.setContentView(this, R.layout.content_home);
+		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 		mBinding.setHandler(this);
 
 		mPreferences = this.getSharedPreferences("com.jojo.jojozquizz", MODE_PRIVATE);
@@ -103,10 +103,13 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		mNameText = findViewById(R.id.text_display_name);
 		mUsersButton = findViewById(R.id.button_users);
 		mNumberOfQuestionsInput = findViewById(R.id.activity_main_number_questions_input);
-		Button mSelectCategoriesButton = findViewById(R.id.activity_main_select_categories_button);
-		Button mBonusButton = findViewById(R.id.activity_main_bonus_button);
 
 		isFirstTime = PlayersDatabase.getInstance(this).PlayersDAO().getAllPlayers().isEmpty();
+
+		mBinding.activityMainStartButton.setOnLongClickListener((View v) -> {
+			startActivity(new Intent(this, LinksActivity.class));
+			return false;
+		});
 
 		if (isFirstTime) {
 			String lang;
@@ -164,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 					Log.d(TAG, "onResponse: " + response.getInt("questionId"));
 				} catch (JSONException ignore) {
 				}
-			}, error -> Snackbar.make(findViewById(R.id.constraint_layout_home), getString(R.string.impossible_to_load_questions), Snackbar.LENGTH_LONG).setAction(getString(R.string.all_retry), new View.OnClickListener() {
+			}, error -> Snackbar.make(findViewById(R.id.drawer_layout), getString(R.string.impossible_to_load_questions), Snackbar.LENGTH_LONG).setAction(getString(R.string.all_retry), new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				getLastIdFromServer();
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 			}
 		};
 		mRequestQueue.add(jsonObjectRequest);
+
 	}
 
 	@Override
@@ -221,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 				}
 			}, error -> {
 				//TODO: Translate
-				Snackbar.make(findViewById(R.id.constraint_layout_home), "Impossible de récupérer les questions du serveur, réessayez plus tard", Snackbar.LENGTH_LONG).show();
+				Snackbar.make(findViewById(R.id.drawer_layout), "Impossible de récupérer les questions du serveur, réessayez plus tard", Snackbar.LENGTH_LONG).show();
 			}) {
 				@Override
 				public Map<String, String> getHeaders() {
@@ -344,7 +348,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 				} else if (mNumberOfQuestionsAsk > 75) {
 					Toast.makeText(mContext, R.string.error_start1, Toast.LENGTH_LONG).show();
 				} else if (QuestionsDatabase.getInstance(this).QuestionDAO().getLastQuestion() == null) {
-					Snackbar.make(findViewById(R.id.constraint_layout_home), getString(R.string.no_questions), Snackbar.LENGTH_LONG).setAction(getString(R.string.all_retry), v1 -> getLastIdFromServer()).show();
+					Snackbar.make(findViewById(R.id.drawer_layout), getString(R.string.no_questions), Snackbar.LENGTH_LONG).setAction(getString(R.string.all_retry), v1 -> getLastIdFromServer()).show();
 				} else {
 					startActivityForResult(new Intent(mContext, GameActivity.class).putExtra("userId", mPlayer.getId()).putExtra("numberOfQuestions", mNumberOfQuestionsAsk), GAME_ACTIVITY_REQUEST_CODE);
 				}

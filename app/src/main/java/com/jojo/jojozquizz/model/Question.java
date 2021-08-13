@@ -119,7 +119,9 @@ public class Question implements Serializable {
 		mCategory = category;
 	}
 
-	public void setStringCategory(String category) { mStringCategory = category;}
+	public void setStringCategory(String category) {
+		mStringCategory = category;
+	}
 
 	public String getStringCategory() {
 		return mStringCategory;
