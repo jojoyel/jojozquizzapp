@@ -14,3 +14,4 @@
 .cxx
 
 app/src/main/java/com/jojo/jojozquizz/tools/CombineKeys.java
+app/src/main/res/xml/network_security_config.xml
