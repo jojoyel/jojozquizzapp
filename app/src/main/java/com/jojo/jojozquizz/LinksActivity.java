@@ -52,7 +52,7 @@ public class LinksActivity extends AppCompatActivity implements ClickHandler {
 			if (mThanksFragment == null) {
 				mThanksFragment = new ThanksFragment();
 				getSupportFragmentManager().beginTransaction()
-					.add(R.id.frame_layout_links, mLinksFragment)
+					.add(R.id.frame_layout_links, mThanksFragment)
 					.commit();
 			}
 		}

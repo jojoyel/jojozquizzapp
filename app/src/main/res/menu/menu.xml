@@ -5,15 +5,15 @@
 		android:id="@+id/menu_links"
 		android:contentDescription="@string/links"
 		android:title="@string/links"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/menu_niu"
 		android:contentDescription="@string/niu"
 		android:title="@string/niu"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/menu_settings"
 		android:contentDescription="@string/settings"
 		android:title="@string/settings"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 </menu>

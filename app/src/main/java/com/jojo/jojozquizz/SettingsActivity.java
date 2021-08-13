@@ -206,7 +206,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 			}) {
 				@Override
 				public Map<String, String> getHeaders() throws AuthFailureError {
-					HashMap<String, String> headers = new HashMap<String, String>();
+					HashMap<String, String> headers = new HashMap<>();
 					String key = ((Global) mContext.getApplicationContext()).getAuthKey();
 					String salt = BCrypt.gensalt();
 					headers.put("app-auth", BCrypt.hashpw(key, salt));
