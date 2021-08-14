@@ -22,6 +22,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.jojo.jojozquizz.databinding.ActivityGameBinding;
 import com.jojo.jojozquizz.model.Player;
 import com.jojo.jojozquizz.model.Question;
@@ -44,32 +47,36 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 	private static final String TAG = "GameActivity";
 
-	private QuestionBank mQuestionBank;
-	private Question mCurrentQuestion;
-	private TextView mQuestionTextView, mNumberOfQuestionsAnsweredText, mNumberOfBonus1Left, mNumberOfBonus2Left, mNumberOfBonus3Left;
-	private Button mAnswerButton1, mAnswerButton2, mAnswerButton3, mAnswerButton4;
-	private Button[] mAllAnswerButton;
-	private ProgressBar mProgressBar;
-	private ImageButton mUseBonus1, mUseBonus2, mUseBonus3;
-	private int mNumberOfQuestions, trueIndex;
-	private boolean mEnableTouchEvents;
-	private Bonus mBonus1, mBonus2, mBonus3;
-	private List<String> mCategoriesSelectedProcessed, mDifficultiesSelectedProcessed;
+	QuestionBank mQuestionBank;
+	Question mCurrentQuestion;
+	TextView mQuestionTextView, mNumberOfQuestionsAnsweredText, mNumberOfBonus1Left, mNumberOfBonus2Left, mNumberOfBonus3Left;
+	Button mAnswerButton1, mAnswerButton2, mAnswerButton3, mAnswerButton4;
+	Button[] mAllAnswerButton;
+	ProgressBar mProgressBar;
+	ImageButton mUseBonus1, mUseBonus2, mUseBonus3;
+	int mNumberOfQuestions, trueIndex;
+	boolean mEnableTouchEvents;
+	Bonus mBonus1, mBonus2, mBonus3;
+	List<String> mCategoriesSelectedProcessed, mDifficultiesSelectedProcessed;
 
-	private int mTotalQuestions; // Number of questions to reach
-	private int mQuestionsAnswered = 0; // Number of questions answered by the player
-	private int mValidatedQuestions = 0; // Number of questions answered well by the player
+	int mTotalQuestions; // Number of questions to reach
 
-	private int mScore = 0;
-	private int mCombo = 0;
-	private int mLives;
+	int mQuestionsAnswered = 0; // Number of questions answered by the player
+	int mValidatedQuestions = 0; // Number of questions answered well by the player
 
-	private InterstitialAd mInterstitialAd;
+	int mScore = 0;
+	int mCombo = 0;
+	int mLives;
 
-	private CategoriesHelper mCategoriesHelper;
+	InterstitialAd mInterstitialAd;
 
-	private Player mPlayer;
-	private List<String> mUserBonus;
+	CategoriesHelper mCategoriesHelper;
+
+	BottomSheetBehavior mBottomSheetBehavior;
+	View mBottomSheetView;
+
+	Player mPlayer;
+	List<String> mUserBonus;
 
 	SharedPreferences mPreferences;
 
@@ -182,6 +189,9 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mNumberOfBonus3Left = mBinding.numberOfBonus3Left;
 		mProgressBar = mBinding.progressBar;
 
+		mBottomSheetView = mBinding.gameBottomSheet;
+		mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheetView);
+
 		mNumberOfQuestionsAnsweredText.setText(String.format("1/%s", mTotalQuestions));
 
 		mAllAnswerButton = new Button[]{mAnswerButton1, mAnswerButton2, mAnswerButton3, mAnswerButton4};
@@ -197,7 +207,9 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
 		this.displayQuestion();
 
-		mEnableTouchEvents = true;
+	}
+
+	private void showBottomSheetDialog() {;
 	}
 
 	@Override
