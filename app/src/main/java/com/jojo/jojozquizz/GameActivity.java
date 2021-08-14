@@ -183,11 +183,11 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mUseBonus1 = mBinding.buttonUseBonus1;
 		mUseBonus2 = mBinding.buttonUseBonus2;
 		mUseBonus3 = mBinding.buttonUseBonus3;
-		mNumberOfQuestionsAnsweredText = mBinding.numberOfQuestionsAnswered;
+		mNumberOfQuestionsAnsweredText = mBinding.gameBottomSheetContent.numberOfQuestionsAnswered;
 		mNumberOfBonus1Left = mBinding.numberOfBonus1Left;
 		mNumberOfBonus2Left = mBinding.numberOfBonus2Left;
 		mNumberOfBonus3Left = mBinding.numberOfBonus3Left;
-		mProgressBar = mBinding.progressBar;
+		mProgressBar = mBinding.gameBottomSheetContent.progressBar;
 
 		mBottomSheetView = mBinding.gameBottomSheet;
 		mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheetView);
@@ -207,9 +207,6 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
 		this.displayQuestion();
 
-	}
-
-	private void showBottomSheetDialog() {;
 	}
 
 	@Override

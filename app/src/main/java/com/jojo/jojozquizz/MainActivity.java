@@ -100,11 +100,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 		isFirstTime = PlayersDatabase.getInstance(this).PlayersDAO().getAllPlayers().isEmpty();
 
-		mBinding.activityMainStartButton.setOnLongClickListener((View v) -> {
-			startActivity(new Intent(this, LinksActivity.class));
-			return false;
-		});
-
 		if (isFirstTime) {
 			String lang;
 			switch (Locale.getDefault().getCountry()) {
@@ -233,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.menu, menu);
 		return true;

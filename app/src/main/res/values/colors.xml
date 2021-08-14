@@ -16,6 +16,7 @@
     <color name="green_true">#4CAF50</color>
 
     <color name="background_night">#191919</color>
+    <color name="background_night_lighter">#3E3D3D</color>
     <color name="background_light">#EDEDED</color>
 
     <color name="colorLightPrimaryInDark">#B6888C</color>

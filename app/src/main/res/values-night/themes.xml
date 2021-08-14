@@ -11,6 +11,7 @@
         <item name="android:statusBarColor" tools:targetApi="1">@color/colorPrimaryDark</item>
 
         <item name="android:fontFamily">@font/caviar_font</item>
+
     </style>
 
     <style name="ActivityTitle">
@@ -54,5 +55,12 @@
         <item name="backgroundTint">@color/colorSecondaryDark</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ShapeAppearanceBottomSheet" parent="">
+        <item name="backgroundColor">#ffffff</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
     </style>
 </resources>
