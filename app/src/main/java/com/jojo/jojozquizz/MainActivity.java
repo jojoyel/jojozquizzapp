@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 		} else {
 			mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(mPreferences.getInt("currentUserId", 1));
 			mBinding.setPlayer(mPlayer);
-			mBinding.setPlayer(mPlayer);
 		}
 
 		checkForUpdates();

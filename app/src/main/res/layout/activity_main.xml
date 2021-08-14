@@ -53,7 +53,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
 			android:padding="15dp"
-			android:text="@{player.lastGameLength > 0 ? @plurals/string_welcome_again(player.lastGameValidated, player.name, player.lastGameLength) : @string/string_welcome }"
+			android:text="@{player.lastGameLength > 0 ? @plurals/string_welcome_again(player.lastGameValidated, player.name, player.lastGameValidated, player.lastGameLength) : @string/string_welcome }"
 			android:textSize="18sp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
