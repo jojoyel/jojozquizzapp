@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -95,26 +96,27 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mBinding.gameBottomSheetContent.setHandler(this);
 
 		Intent intent = getIntent();
+		mNumberOfQuestions = intent.getIntExtra("numberOfQuestions", 20);
+
 		mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(intent.getIntExtra("userId", 1));
 		mBinding.setPlayer(mPlayer);
 
-		mNumberOfQuestions = intent.getIntExtra("numberOfQuestions", 20);
 		mTotalQuestions = mNumberOfQuestions;
 
-		AdRequest adRequest = new AdRequest.Builder().build();
-		InterstitialAd.load(this, "ca-app-pub-5050054249389989/7659082720", adRequest, new InterstitialAdLoadCallback() {
-			@Override
-			public void onAdLoaded(@NonNull com.google.android.gms.ads.interstitial.InterstitialAd interstitialAd) {
-				super.onAdLoaded(interstitialAd);
-				mInterstitialAd = interstitialAd;
-			}
-
-			@Override
-			public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-				super.onAdFailedToLoad(loadAdError);
-				mInterstitialAd = null;
-			}
-		});
+//		AdRequest adRequest = new AdRequest.Builder().build();
+//		InterstitialAd.load(this, "ca-app-pub-5050054249389989/7659082720", adRequest, new InterstitialAdLoadCallback() {
+//			@Override
+//			public void onAdLoaded(@NonNull com.google.android.gms.ads.interstitial.InterstitialAd interstitialAd) {
+//				super.onAdLoaded(interstitialAd);
+//				mInterstitialAd = interstitialAd;
+//			}
+//
+//			@Override
+//			public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//				super.onAdFailedToLoad(loadAdError);
+//				mInterstitialAd = null;
+//			}
+//		});
 
 		mEnableTouchEvents = false;
 
@@ -398,68 +400,43 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		}
 	}
 
-	/**
-	 * changeButtons va formater les boutons pour afficher la réponse : tout les boutons sont setups
-	 * de la même façon, si ce que l'utilisateur a répondu est faux, le bouton virera au noir et la
-	 * bonne réponse sera affichée grâce à styleGoodButton()
-	 *
-	 * @param id
-	 */
-	private void changeButtons(int id) {
-		int[] buttons = {R.id.activity_game_answer1_btn, R.id.activity_game_answer2_btn, R.id.activity_game_answer3_btn, R.id.activity_game_answer4_btn};
-
-		for (Button button : mAllAnswerButton) {
-			button.setBackgroundColor(getResources().getColor(R.color.colorLightPrimary));
-			button.setTextColor(getResources().getColor(R.color.colorPrimary));
+	private void displayResult(Button goodButton, Button buttonClicked) {
+		for (Button b : mAllAnswerButton) {
+			b.setBackgroundColor(getResources().getColor(R.color.colorLightPrimary));
+			b.setTextColor(getResources().getColor(R.color.colorPrimary));
 		}
-		if (id != buttons[mCurrentQuestion.getAnswerIndex()]) {
-			if (id == R.id.activity_game_answer1_btn) {
-				mAnswerButton1.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
-				mAnswerButton1.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (id == R.id.activity_game_answer2_btn) {
-				mAnswerButton2.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
-				mAnswerButton2.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (id == R.id.activity_game_answer3_btn) {
-				mAnswerButton3.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
-				mAnswerButton3.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-			} else if (id == R.id.activity_game_answer4_btn) {
-				mAnswerButton4.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
-				mAnswerButton4.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+		buttonClicked.setBackgroundColor(R.drawable.rounded_corners_white_border_dark);
+		buttonClicked.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+		goodButton.setBackgroundColor(getResources().getColor(R.color.green_true));
+		goodButton.setTextColor(getResources().getColor(R.color.colorSecondary));
+	}
+
+	private void checkAnswerValidity(int idClicked) {
+		int[] buttonsIds = {R.id.activity_game_answer1_btn, R.id.activity_game_answer2_btn, R.id.activity_game_answer3_btn, R.id.activity_game_answer4_btn};
+
+		int clickedIndex = -1;
+		for (int i = 0; i < buttonsIds.length; i++) {
+			if (buttonsIds[i] == idClicked) {
+				clickedIndex = i;
+				break;
 			}
-			styleGoodButton();
+		}
+
+		int rightIndex = mCurrentQuestion.getAnswerIndex();
+
+		if (clickedIndex == rightIndex) {
+			calculateScore(true);
+			mValidatedQuestions++;
+		} else {
 			mLives--;
 			mBinding.gameBottomSheetContent.numberOfLivesText.setText(getString(R.string.lives_text, Math.max(mLives, 0)));
 			calculateScore(false);
-		} else {
-			styleGoodButton();
-			calculateScore(true);
-			mValidatedQuestions++;
 		}
-	}
-
-	/**
-	 * styleGoodButton met le bouton qui contient la bonne réponse en background vert, n'est
-	 * utilisée que par cette changeButton
-	 */
-	private void styleGoodButton() {
-		switch (mCurrentQuestion.getAnswerIndex()) {
-			case 0:
-				mAnswerButton1.setBackgroundColor(getResources().getColor(R.color.green_true));
-				mAnswerButton1.setTextColor(getResources().getColor(R.color.colorSecondary));
-				break;
-			case 1:
-				mAnswerButton2.setBackgroundColor(getResources().getColor(R.color.green_true));
-				mAnswerButton2.setTextColor(getResources().getColor(R.color.colorSecondary));
-				break;
-			case 2:
-				mAnswerButton3.setBackgroundColor(getResources().getColor(R.color.green_true));
-				mAnswerButton3.setTextColor(getResources().getColor(R.color.colorSecondary));
-				break;
-			case 3:
-				mAnswerButton4.setBackgroundColor(getResources().getColor(R.color.green_true));
-				mAnswerButton4.setTextColor(getResources().getColor(R.color.colorSecondary));
-				break;
-		}
+		Log.d(TAG, "checkAnswerValidity: " + rightIndex);
+		Log.d(TAG, "checkAnswerValidity: " + clickedIndex);
+		displayResult(mAllAnswerButton[rightIndex], mAllAnswerButton[clickedIndex]);
 	}
 
 	/**
@@ -551,19 +528,20 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		int id = v.getId();
 
 		if (id == R.id.activity_game_answer1_btn || id == R.id.activity_game_answer2_btn || id == R.id.activity_game_answer3_btn || id == R.id.activity_game_answer4_btn) {
-			mQuestionsAnswered++;
 			mEnableTouchEvents = false;
+			mQuestionsAnswered++;
 			if (--mNumberOfQuestions == 0) {
 				suspense();
 				new Handler().postDelayed(() -> {
-					changeButtons(id);
+					checkAnswerValidity(id);
 					new Handler().postDelayed(() -> {
 						mEnableTouchEvents = true;
 						stopGame();
 					}, 1500);
 				}, 4000);
 			} else {
-				changeButtons(id);
+				checkAnswerValidity(id);
+
 				new Handler().postDelayed(() -> {
 					mCurrentQuestion = mQuestionBank.getNextQuestion();
 					mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
@@ -604,9 +582,8 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 			}
 		} else if (id == R.id.gameBottomSheetTitle) {
 			mBottomSheetBehavior.setState(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED ? BottomSheetBehavior.STATE_COLLAPSED : BottomSheetBehavior.STATE_EXPANDED);
-		}
-		 else if (id == R.id.leaveGameButton) {
-		 	stopGame();
+		} else if (id == R.id.leaveGameButton) {
+			stopGame();
 		}
 	}
 }
