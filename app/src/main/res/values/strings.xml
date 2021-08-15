@@ -42,7 +42,7 @@
 	<string name="content_description_image_bonus_3" translatable="false">Image bonus 3</string>
 	<string name="content_description_plus">Button +</string>
 
-	<string name="thanks_text">Thanks to the people listed below<br /><br />Questions writers :<br />- leversplat<br />- Julie<br />- Piayral<br /><br />Design masters :<br />Nokolas (Logo, and some others things)<br /><br />Beta testers :<br />- leversplat<br />- Alexouu<br />- ODDIN Cyril<br />- Nokolas<br />- lo<br /><br />Leversplat and Wolzinix for its immense involvement<br />And a very big thank you to Alexouu, for his advice and support</string>
+	<string name="thanks_text">Thanks to the people listed below\n\n<br /><br />Questions writers :\n<br />- leversplat\n<br />- Julie\n<br />- Piayral\n<br />\n<br />Design masters :\n<br />Nokolas (Logo, and some others things)\n<br />\n<br />Beta testers :\n<br />- leversplat\n<br />- Alexouu\n<br />- ODDIN Cyril\n<br />- Nokolas\n<br />- lo\n<br />\n<br />Leversplat and Wolzinix for its immense involvement\n<br />And a very big thank you to Alexouu, for his advice and support</string>
 	<string name="niu_text">All the features planned for the next versions:<br />- New game mode<br />- New predefined games<br />- Sounds and music (normally ^^)<br /><br />And of course more questions and categories</string>
 	<string name="niu_title" translatable="false">Next Important Update</string>
 	<string name="link_instagram" translatable="false">Instagram</string>
@@ -178,5 +178,7 @@
 	<string name="leave_game">Exit game</string>
 	<string name="lives_text">Lives : %d</string>
 	<string name="game_information_title">Game information</string>
+	<string name="links_button">Liens</string>
+	<string name="thanks_button">Remerciements</string>
 
 </resources>

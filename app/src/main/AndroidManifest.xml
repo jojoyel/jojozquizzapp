@@ -48,9 +48,6 @@
 		<activity
 			android:name=".SelectCategoriesActivity"
 			android:screenOrientation="portrait" />
-		<activity
-			android:name=".ThanksActivity"
-			android:screenOrientation="portrait" />
 
 		<meta-data
 			android:name="com.google.android.gms.ads.APPLICATION_ID"
