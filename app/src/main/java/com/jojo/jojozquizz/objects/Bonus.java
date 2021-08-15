@@ -40,8 +40,4 @@ public class Bonus {
 	public boolean isAlreadyUse() {
 		return alreadyUse;
 	}
-
-	public interface BonusActions {
-		boolean useBonus(Bonus bonus);
-	}
 }
