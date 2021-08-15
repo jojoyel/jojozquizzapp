@@ -12,8 +12,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -64,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	EditText mNumberOfQuestionsInput;
 
+	Toolbar mToolbar;
+
 	SharedPreferences mPreferences;
 
 	boolean isFirstTime;
@@ -81,12 +81,11 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-
 		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 		mBinding.setHandler(this);
+
+		mToolbar = mBinding.toolbar;
+		setSupportActionBar(mToolbar);
 
 		mPreferences = this.getSharedPreferences("com.jojo.jojozquizz", MODE_PRIVATE);
 		API_URL = getResources().getString(R.string.api_domain);
@@ -169,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 			}
 		};
 		mRequestQueue.add(jsonObjectRequest);
-
 	}
 
 	@Override
@@ -228,23 +226,28 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		super.onCreateOptionsMenu(menu);
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.menu, menu);
-		return true;
+		getMenuInflater().inflate(R.menu.menu,menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		Log.d(TAG, "onOptionsItemSelected: ");
 		int itemId = item.getItemId();
-		if (itemId == R.id.menu_niu) {
-			new NiuDialog().showDialog(this);
-		} else if (itemId == R.id.menu_links) {
-			startActivity(new Intent(mContext, LinksActivity.class));
-		} else if (itemId == R.id.menu_settings) {
-			startActivity(new Intent(mContext, SettingsActivity.class));
+		switch (itemId) {
+			case R.id.menu_niu:
+				new NiuDialog().showDialog(this);
+				return true;
+			case R.id.menu_links:
+				startActivity(new Intent(mContext, LinksActivity.class));
+				return true;
+			case R.id.menu_settings:
+				startActivity(new Intent(mContext, SettingsActivity.class));
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+
 	}
 
 	@Override

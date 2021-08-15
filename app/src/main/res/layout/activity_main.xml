@@ -13,165 +13,173 @@
 			type="com.jojo.jojozquizz.model.Player" />
 	</data>
 
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:id="@+id/drawer_layout"
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-		<com.google.android.material.appbar.AppBarLayout
-			android:id="@+id/appBarLayout"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent">
 
-			<com.google.android.material.appbar.MaterialToolbar
-				android:id="@+id/toolbar"
-				style="@style/Widget.MaterialComponents.Toolbar.Primary"
-				android:layout_width="match_parent"
-				android:layout_height="?attr/actionBarSize"
-				android:background="@color/colorPrimary"
-				app:layout_constraintTop_toTopOf="parent"
-				app:menu="@menu/menu"
-				app:title="@string/string_title" />
-		</com.google.android.material.appbar.AppBarLayout>
-
-		<TextView
-			android:id="@+id/activity_main_text_title"
-			style="@style/ActivityTitle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginEnd="50dp"
-			android:text="@string/string_title"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-		<TextView
-			android:id="@+id/activity_main_greeting_text"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:padding="15dp"
-			android:text="@{player.lastGameLength > 0 ? @plurals/string_welcome_again(player.lastGameValidated, player.name, player.lastGameValidated, player.lastGameLength) : @string/string_welcome }"
-			android:textSize="18sp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/activity_main_text_title" />
-
-		<TextView
-			android:id="@+id/text_display_name"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:text="@{player.name}"
-			android:textColor="?attr/colorSecondary"
-			android:textSize="28sp"
-			android:textStyle="bold"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/activity_main_greeting_text" />
-
-		<ImageButton
-			android:id="@+id/button_users"
-			android:layout_width="36dp"
-			android:layout_height="36dp"
-			android:layout_marginStart="32dp"
-			android:background="#00FFFFFF"
-			android:contentDescription="@string/users_icon"
-			android:onClick="@{handler::onButtonClick}"
-			android:scaleType="centerInside"
-			app:layout_constraintBottom_toBottomOf="@+id/text_display_name"
-			app:layout_constraintStart_toEndOf="@+id/text_display_name"
-			app:layout_constraintTop_toTopOf="@+id/text_display_name"
-			app:srcCompat="@drawable/users_icon" />
-
-		<com.google.android.material.textfield.TextInputLayout
-			android:id="@+id/number_of_questions_layout"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginTop="25dp"
-			android:layout_marginEnd="20dp"
-			android:hint="@string/hint_number_questions"
-			app:layout_constraintEnd_toEndOf="@id/guideline13"
-			app:layout_constraintHorizontal_bias="0.5"
-			app:layout_constraintStart_toStartOf="@id/guideline12"
-			app:layout_constraintTop_toBottomOf="@+id/button_users">
-
-			<com.google.android.material.textfield.TextInputEditText
-				android:id="@+id/activity_main_number_questions_input"
+			<com.google.android.material.appbar.AppBarLayout
+				android:id="@+id/appBarLayout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:inputType="number"
-				android:maxLength="2"
-				android:singleLine="true"
-				android:text="@{`` + (player.lastGameLength > 0 ? player.lastGameLength : 20)}" />
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
 
-		</com.google.android.material.textfield.TextInputLayout>
+				<androidx.appcompat.widget.Toolbar
+					android:id="@+id/toolbar"
+					style="@style/Widget.MaterialComponents.Toolbar.Primary"
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:background="@color/colorPrimary"
+					app:menu="@menu/menu"
+					app:title="@string/string_title" />
+			</com.google.android.material.appbar.AppBarLayout>
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/activity_main_select_categories_button"
-			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:layout_marginEnd="5dp"
-			android:onClick="@{handler::onButtonClick}"
-			android:text="@string/cats"
-			app:layout_constraintEnd_toStartOf="@+id/guideline10"
-			app:layout_constraintHorizontal_bias="0.0"
-			app:layout_constraintStart_toStartOf="@+id/guideline12"
-			app:layout_constraintTop_toBottomOf="@+id/number_of_questions_layout" />
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/activity_main_bonus_button"
-			style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="5dp"
-			android:layout_marginTop="20dp"
-			android:onClick="@{handler::onButtonClick}"
-			android:text="@string/bonus"
-			android:textColor="@color/colorSecondary"
-			app:layout_constraintEnd_toStartOf="@+id/guideline13"
-			app:layout_constraintStart_toStartOf="@+id/guideline10"
-			app:layout_constraintTop_toBottomOf="@+id/number_of_questions_layout" />
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/drawer_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<TextView
+				android:id="@+id/activity_main_text_title"
+				style="@style/ActivityTitle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="?attr/actionBarSize"
+				android:layout_marginEnd="50dp"
+				android:text="@string/string_title"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
 
-		<com.google.android.material.button.MaterialButton
-			android:id="@+id/activity_main_start_button"
-			style="@style/Widget.MaterialComponents.Button"
-			android:layout_width="300dp"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="25dp"
-			android:onClick="@{handler::onButtonClick}"
-			android:padding="15dp"
-			android:text="@string/string_start"
-			android:textSize="18sp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/activity_main_select_categories_button" />
+			<TextView
+				android:id="@+id/activity_main_greeting_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:padding="15dp"
+				android:text="@{player.lastGameLength > 0 ? @plurals/string_welcome_again(player.lastGameValidated, player.name, player.lastGameValidated, player.lastGameLength) : @string/string_welcome }"
+				android:textSize="18sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/activity_main_text_title" />
 
-		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/guideline10"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			app:layout_constraintGuide_percent="0.5" />
+			<TextView
+				android:id="@+id/text_display_name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:text="@{player.name}"
+				android:textColor="?attr/colorSecondary"
+				android:textSize="28sp"
+				android:textStyle="bold"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/activity_main_greeting_text" />
 
-		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/guideline12"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			app:layout_constraintGuide_percent="0.16" />
+			<ImageButton
+				android:id="@+id/button_users"
+				android:layout_width="36dp"
+				android:layout_height="36dp"
+				android:layout_marginStart="32dp"
+				android:background="#00FFFFFF"
+				android:contentDescription="@string/users_icon"
+				android:onClick="@{handler::onButtonClick}"
+				android:scaleType="centerInside"
+				app:layout_constraintBottom_toBottomOf="@+id/text_display_name"
+				app:layout_constraintStart_toEndOf="@+id/text_display_name"
+				app:layout_constraintTop_toTopOf="@+id/text_display_name"
+				app:srcCompat="@drawable/users_icon" />
 
-		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/guideline13"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			app:layout_constraintGuide_percent="0.84" />
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/number_of_questions_layout"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="20dp"
+				android:layout_marginTop="25dp"
+				android:layout_marginEnd="20dp"
+				android:hint="@string/hint_number_questions"
+				app:layout_constraintEnd_toEndOf="@id/guideline13"
+				app:layout_constraintHorizontal_bias="0.5"
+				app:layout_constraintStart_toStartOf="@id/guideline12"
+				app:layout_constraintTop_toBottomOf="@+id/button_users">
 
-	</androidx.constraintlayout.widget.ConstraintLayout>
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/activity_main_number_questions_input"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="number"
+					android:maxLength="2"
+					android:singleLine="true"
+					android:text="@{`` + (player.lastGameLength > 0 ? player.lastGameLength : 20)}" />
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/activity_main_select_categories_button"
+				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="20dp"
+				android:layout_marginEnd="5dp"
+				android:onClick="@{handler::onButtonClick}"
+				android:text="@string/cats"
+				app:layout_constraintEnd_toStartOf="@+id/guideline10"
+				app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintStart_toStartOf="@+id/guideline12"
+				app:layout_constraintTop_toBottomOf="@+id/number_of_questions_layout" />
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/activity_main_bonus_button"
+				style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="5dp"
+				android:layout_marginTop="20dp"
+				android:onClick="@{handler::onButtonClick}"
+				android:text="@string/bonus"
+				android:textColor="@color/colorSecondary"
+				app:layout_constraintEnd_toStartOf="@+id/guideline13"
+				app:layout_constraintStart_toStartOf="@+id/guideline10"
+				app:layout_constraintTop_toBottomOf="@+id/number_of_questions_layout" />
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/activity_main_start_button"
+				style="@style/Widget.MaterialComponents.Button"
+				android:layout_width="300dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="25dp"
+				android:onClick="@{handler::onButtonClick}"
+				android:padding="15dp"
+				android:text="@string/string_start"
+				android:textSize="18sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/activity_main_select_categories_button" />
+
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/guideline10"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:layout_constraintGuide_percent="0.5" />
+
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/guideline12"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:layout_constraintGuide_percent="0.16" />
+
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/guideline13"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:layout_constraintGuide_percent="0.84" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>
