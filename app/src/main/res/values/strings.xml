@@ -73,7 +73,7 @@
 	<string name="new_user_name_dialog_title">What\'s your name ?</string>
 	<string name="bonus_of">Player\'s bonus\n%s</string>
 	<string name="company_name" translatable="false">Nextfor mobile</string>
-	<string name="slash" translatable="false">/</string>
+	<string name="slash" translatable="false">%1$d/%2$d</string>
 	<string name="game_game_over">Game over</string>
 	<string name="string_welcome">Welcome !</string>
 	<string name="string_start">Start</string>
@@ -174,7 +174,9 @@
 	<string name="delete_user_message">Do you really want to erase this user ?</string>
 	<string name="delete_user_error">There is just one user left, you can\'t remove it</string>
 	<string name="user_stats">Stats :\n- Total score : %1$d\n- High score : %2$d\n- Number of games played : %3$d\n- Number of questions answered correctly / number of questions asked : %4$d/%5$d</string>
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
+
+	<string name="leave_game">Exit game</string>
+	<string name="lives_text">Lives : %d</string>
+	<string name="game_information_title">Game information</string>
 
 </resources>

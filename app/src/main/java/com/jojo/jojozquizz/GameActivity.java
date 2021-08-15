@@ -23,8 +23,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.jojo.jojozquizz.databinding.ActivityGameBinding;
 import com.jojo.jojozquizz.model.Player;
 import com.jojo.jojozquizz.model.Question;
@@ -94,6 +92,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_game);
 		mBinding.setHandler(this);
+		mBinding.gameBottomSheetContent.setHandler(this);
 
 		Intent intent = getIntent();
 		mPlayer = PlayersDatabase.getInstance(this).PlayersDAO().getPlayer(intent.getIntExtra("userId", 1));
@@ -168,6 +167,8 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		} else {
 			mLives = (3 + totalQuestionsValue / 10) - 1;
 		}
+
+		mBinding.gameBottomSheetContent.numberOfLivesText.setText(getString(R.string.lives_text, mLives));
 
 		mUserBonus = Arrays.asList(mPlayer.getBonus().split("-/-"));
 		mBonus1 = new Bonus(Integer.parseInt(mUserBonus.get(0)), getString(R.string.bonus_skip));
@@ -427,6 +428,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 			}
 			styleGoodButton();
 			mLives--;
+			mBinding.gameBottomSheetContent.numberOfLivesText.setText(getString(R.string.lives_text, Math.max(mLives, 0)));
 			calculateScore(false);
 		} else {
 			styleGoodButton();
@@ -547,8 +549,9 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 	@Override
 	public void onButtonClick(View v) {
 		int id = v.getId();
+
 		if (id == R.id.activity_game_answer1_btn || id == R.id.activity_game_answer2_btn || id == R.id.activity_game_answer3_btn || id == R.id.activity_game_answer4_btn) {
-			mQuestionsAnswered += 1;
+			mQuestionsAnswered++;
 			mEnableTouchEvents = false;
 			if (--mNumberOfQuestions == 0) {
 				suspense();
@@ -566,16 +569,14 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 					mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
 					displayQuestion();
 					setStyleDefault();
-					String textToShow = (mQuestionsAnswered + 1) + getString(R.string.slash) + mTotalQuestions;
-					mNumberOfQuestionsAnsweredText.setText(textToShow);
-					mProgressBar.setProgress(mQuestionsAnswered);
+					mNumberOfQuestionsAnsweredText.setText(getString(R.string.slash, mQuestionsAnswered, mTotalQuestions));
 					mProgressBar.setProgress(mQuestionsAnswered);
 					mEnableTouchEvents = true;
 				}, 1500);
 			}
 		} else if (id == R.id.button_use_bonus_1) {
 			if (mBonus1.isAlreadyUse()) toastBonusAlreadyUsed();
-			else if (mProgressBar.getProgress() == mTotalQuestions - 1) {
+			else if (--mNumberOfQuestions == 0) {
 				Toast.makeText(this, getResources().getString(R.string.game_cant_use_bonus_last_question), Toast.LENGTH_SHORT).show();
 			} else {
 				mBonus1.setAlreadyUse(true);
@@ -601,6 +602,11 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 					mNumberOfBonus3Left.setVisibility(View.INVISIBLE);
 				}
 			}
+		} else if (id == R.id.gameBottomSheetTitle) {
+			mBottomSheetBehavior.setState(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED ? BottomSheetBehavior.STATE_COLLAPSED : BottomSheetBehavior.STATE_EXPANDED);
+		}
+		 else if (id == R.id.leaveGameButton) {
+		 	stopGame();
 		}
 	}
 }

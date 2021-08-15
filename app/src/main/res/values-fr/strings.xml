@@ -143,4 +143,7 @@
     <string name="delete_user_message">Voulez-vous vraiment supprimer cet utilisateur ?</string>
     <string name="delete_user_error">Il n\'y a plus qu\'un seul utilisateur vous ne pouvez pas enlever le dernier</string>
     <string name="user_stats">Statistiques :\n- Score total : %1$d\n- Meilleur score : %2$d\n- Nombre de parties jouées : %3$d\n- Nombre de bonnes réponses / nombres de questions posées : %4$d/%5$d</string>
+    <string name="leave_game">Terminer la partie</string>
+    <string name="lives_text">Vies : %d</string>
+	<string name="game_information_title">Informations sur la partie</string>
 </resources>
