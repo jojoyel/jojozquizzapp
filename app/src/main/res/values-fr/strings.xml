@@ -146,4 +146,5 @@
     <string name="leave_game">Terminer la partie</string>
     <string name="lives_text">Vies : %d</string>
 	<string name="game_information_title">Informations sur la partie</string>
+	<string name="content_desc_arrow_up">Arrow up to open information window</string>
 </resources>

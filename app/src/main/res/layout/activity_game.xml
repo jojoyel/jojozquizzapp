@@ -265,6 +265,18 @@
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
 				app:layout_constraintGuide_percent="0.9" />
+
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/game_fab"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				android:onClick="@{handler::onButtonClick}"
+				android:contentDescription="@string/content_desc_arrow_up"
+				android:src="@drawable/ic_baseline_arrow_up_24"
+				android:visibility="gone"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
 		<androidx.constraintlayout.widget.ConstraintLayout
@@ -273,7 +285,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
-			app:behavior_hideable="false"
+			app:behavior_hideable="true"
 			app:behavior_peekHeight="60dp"
 			app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 

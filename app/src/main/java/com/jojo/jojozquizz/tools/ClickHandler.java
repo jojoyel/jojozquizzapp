@@ -4,4 +4,5 @@ import android.view.View;
 
 public interface ClickHandler {
 	void onButtonClick(View v);
+	boolean onLongButtonClick(View v);
 }

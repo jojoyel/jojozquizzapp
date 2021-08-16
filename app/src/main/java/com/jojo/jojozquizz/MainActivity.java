@@ -331,4 +331,9 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 			startActivity(new Intent(mContext, BonusActivity.class));
 		}
 	}
+
+	@Override
+	public boolean onLongButtonClick(View v) {
+		return false;
+	}
 }

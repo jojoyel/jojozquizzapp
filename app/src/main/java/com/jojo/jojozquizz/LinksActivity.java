@@ -65,4 +65,9 @@ public class LinksActivity extends AppCompatActivity implements ClickHandler {
 				.commit();
 		}
 	}
+
+	@Override
+	public boolean onLongButtonClick(View v) {
+		return false;
+	}
 }

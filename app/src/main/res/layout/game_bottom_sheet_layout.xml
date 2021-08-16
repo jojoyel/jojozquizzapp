@@ -7,6 +7,9 @@
 		<variable
 			name="handler"
 			type="com.jojo.jojozquizz.tools.ClickHandler" />
+		<variable
+			name="activity"
+			type="com.jojo.jojozquizz.GameActivity" />
 	</data>
 
 	<LinearLayout
@@ -26,6 +29,7 @@
 				android:background="?attr/colorSecondary"
 				android:gravity="center"
 				android:onClick="@{handler::onButtonClick}"
+				android:onLongClick="@{(v) -> handler.onLongButtonClick(v)}"
 				android:text="@string/game_information_title" />
 
 		</LinearLayout>

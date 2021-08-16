@@ -180,5 +180,6 @@
 	<string name="game_information_title">Game information</string>
 	<string name="links_button">Liens</string>
 	<string name="thanks_button">Remerciements</string>
+	<string name="content_desc_arrow_up">Arrow up to open information window</string>
 
 </resources>
