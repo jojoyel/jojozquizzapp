@@ -19,11 +19,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jojo.jojozquizz.databinding.ActivityGameBinding;
 import com.jojo.jojozquizz.model.Player;
 import com.jojo.jojozquizz.model.Question;
@@ -53,6 +51,9 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 	Button[] mAllAnswerButton;
 	ProgressBar mProgressBar;
 	ImageButton mUseBonus1, mUseBonus2, mUseBonus3;
+	FloatingActionButton mFloatingActionButton;
+
+
 	int mNumberOfQuestions, trueIndex;
 	boolean mEnableTouchEvents;
 	Bonus mBonus1, mBonus2, mBonus3;
@@ -178,6 +179,8 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		mBonus3 = new Bonus(Integer.parseInt(mUserBonus.get(2)), getString(R.string.bonus_easier));
 
 		// Initializing GUI
+		mFloatingActionButton = mBinding.gameFab;
+
 		mQuestionTextView = mBinding.activityGameQuestionText;
 		mAnswerButton1 = mBinding.activityGameAnswer1Btn;
 		mAnswerButton2 = mBinding.activityGameAnswer2Btn;
@@ -194,6 +197,18 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		mBottomSheetView = mBinding.gameBottomSheet;
 		mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheetView);
+		mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+			@Override
+			public void onStateChanged(@NonNull View bottomSheet, int newState) {
+				if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+					mFloatingActionButton.show();
+				}
+			}
+
+			@Override
+			public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+			}
+		});
 
 		mNumberOfQuestionsAnsweredText.setText(String.format("1/%s", mTotalQuestions));
 
@@ -527,63 +542,93 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 	public void onButtonClick(View v) {
 		int id = v.getId();
 
-		if (id == R.id.activity_game_answer1_btn || id == R.id.activity_game_answer2_btn || id == R.id.activity_game_answer3_btn || id == R.id.activity_game_answer4_btn) {
-			mEnableTouchEvents = false;
-			mQuestionsAnswered++;
-			if (--mNumberOfQuestions == 0) {
-				suspense();
-				new Handler().postDelayed(() -> {
-					checkAnswerValidity(id);
+		switch (id) {
+			case R.id.activity_game_answer1_btn:
+			case R.id.activity_game_answer2_btn:
+			case R.id.activity_game_answer3_btn:
+			case R.id.activity_game_answer4_btn:
+				mEnableTouchEvents = false;
+				mQuestionsAnswered++;
+				if (--mNumberOfQuestions == 0) {
+					suspense();
 					new Handler().postDelayed(() -> {
-						mEnableTouchEvents = true;
-						stopGame();
-					}, 1500);
-				}, 4000);
-			} else {
-				checkAnswerValidity(id);
+						checkAnswerValidity(id);
+						new Handler().postDelayed(() -> {
+							mEnableTouchEvents = true;
+							stopGame();
+						}, 1500);
+					}, 4000);
+				} else {
+					checkAnswerValidity(id);
 
-				new Handler().postDelayed(() -> {
-					mCurrentQuestion = mQuestionBank.getNextQuestion();
-					mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
-					displayQuestion();
-					setStyleDefault();
-					mNumberOfQuestionsAnsweredText.setText(getString(R.string.slash, mQuestionsAnswered, mTotalQuestions));
-					mProgressBar.setProgress(mQuestionsAnswered);
-					mEnableTouchEvents = true;
-				}, 1500);
-			}
-		} else if (id == R.id.button_use_bonus_1) {
-			if (mBonus1.isAlreadyUse()) toastBonusAlreadyUsed();
-			else if (--mNumberOfQuestions == 0) {
-				Toast.makeText(this, getResources().getString(R.string.game_cant_use_bonus_last_question), Toast.LENGTH_SHORT).show();
-			} else {
-				mBonus1.setAlreadyUse(true);
-				bonusSkipQuestion();
-				mUseBonus1.setVisibility(View.INVISIBLE);
-				mNumberOfBonus1Left.setVisibility(View.INVISIBLE);
-			}
-		} else if (id == R.id.button_use_bonus_2) {
-			if (mBonus2.isAlreadyUse()) toastBonusAlreadyUsed();
-			else {
-				mBonus2.setAlreadyUse(true);
-				bonusClearAnswers();
-				mUseBonus2.setVisibility(View.INVISIBLE);
-				mNumberOfBonus2Left.setVisibility(View.INVISIBLE);
-			}
-		} else if (id == R.id.button_use_bonus_3) {
-			if (mBonus3.isAlreadyUse()) toastBonusAlreadyUsed();
-			else {
-				boolean bonusUsed = bonusEasier();
-				if (bonusUsed) {
-					mBonus3.setAlreadyUse(true);
-					mUseBonus3.setVisibility(View.INVISIBLE);
-					mNumberOfBonus3Left.setVisibility(View.INVISIBLE);
+					new Handler().postDelayed(() -> {
+						mCurrentQuestion = mQuestionBank.getNextQuestion();
+						mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
+						displayQuestion();
+						setStyleDefault();
+						mNumberOfQuestionsAnsweredText.setText(getString(R.string.slash, mQuestionsAnswered, mTotalQuestions));
+						mProgressBar.setProgress(mQuestionsAnswered);
+						mEnableTouchEvents = true;
+					}, 1500);
 				}
-			}
-		} else if (id == R.id.gameBottomSheetTitle) {
-			mBottomSheetBehavior.setState(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED ? BottomSheetBehavior.STATE_COLLAPSED : BottomSheetBehavior.STATE_EXPANDED);
-		} else if (id == R.id.leaveGameButton) {
-			stopGame();
+				break;
+			case R.id.button_use_bonus_1:
+				if (mBonus1.isAlreadyUse()) toastBonusAlreadyUsed();
+				else if (--mNumberOfQuestions == 0) {
+					Toast.makeText(this, getResources().getString(R.string.game_cant_use_bonus_last_question), Toast.LENGTH_SHORT).show();
+				} else {
+					mBonus1.setAlreadyUse(true);
+					bonusSkipQuestion();
+					mUseBonus1.setVisibility(View.INVISIBLE);
+					mNumberOfBonus1Left.setVisibility(View.INVISIBLE);
+				}
+				break;
+			case R.id.button_use_bonus_2:
+				if (mBonus2.isAlreadyUse()) toastBonusAlreadyUsed();
+				else {
+					mBonus2.setAlreadyUse(true);
+					bonusClearAnswers();
+					mUseBonus2.setVisibility(View.INVISIBLE);
+					mNumberOfBonus2Left.setVisibility(View.INVISIBLE);
+				}
+				break;
+			case R.id.button_use_bonus_3:
+				if (mBonus3.isAlreadyUse()) toastBonusAlreadyUsed();
+				else {
+					boolean bonusUsed = bonusEasier();
+					if (bonusUsed) {
+						mBonus3.setAlreadyUse(true);
+						mUseBonus3.setVisibility(View.INVISIBLE);
+						mNumberOfBonus3Left.setVisibility(View.INVISIBLE);
+					}
+				}
+				break;
+			case R.id.game_fab:  // fab button (to show bottom sheet)
+				Log.d(TAG, "onButtonClick: ");
+				mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+				mFloatingActionButton.hide();
+				break;
+			case R.id.gameBottomSheetTitle:  // Bottom sheet bar
+				if (mBottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
+					mBottomSheetBehavior.setState(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED ? BottomSheetBehavior.STATE_COLLAPSED : BottomSheetBehavior.STATE_EXPANDED);
+				}
+				break;
+			case R.id.leaveGameButton:  // Bottom sheet button quit
+				stopGame();
+				break;
 		}
+	}
+
+	@Override
+	public boolean onLongButtonClick(View v) {
+		int id = v.getId();
+
+		switch (id) {
+			case R.id.gameBottomSheetTitle:
+				mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+				mFloatingActionButton.show();
+
+		}
+		return false;
 	}
 }
