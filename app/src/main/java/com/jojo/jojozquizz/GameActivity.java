@@ -32,6 +32,7 @@ import com.jojo.jojozquizz.tools.ClickHandler;
 import com.jojo.jojozquizz.tools.PlayersDAO;
 import com.jojo.jojozquizz.tools.PlayersDatabase;
 import com.jojo.jojozquizz.tools.QuestionsDatabase;
+import com.jojo.jojozquizz.ui.FabAnimation;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -53,7 +54,6 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 	ImageButton mUseBonus1, mUseBonus2, mUseBonus3;
 	FloatingActionButton mFloatingActionButton;
 
-
 	int mNumberOfQuestions, trueIndex;
 	boolean mEnableTouchEvents;
 	Bonus mBonus1, mBonus2, mBonus3;
@@ -73,6 +73,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 	CategoriesHelper mCategoriesHelper;
 
 	BottomSheetBehavior mBottomSheetBehavior;
+	int mCurrentBottomSheetState;
 	View mBottomSheetView;
 
 	Player mPlayer;
@@ -180,6 +181,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		// Initializing GUI
 		mFloatingActionButton = mBinding.gameFab;
+		FabAnimation.init(mFloatingActionButton);
 
 		mQuestionTextView = mBinding.activityGameQuestionText;
 		mAnswerButton1 = mBinding.activityGameAnswer1Btn;
@@ -197,11 +199,20 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		mBottomSheetView = mBinding.gameBottomSheet;
 		mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheetView);
+		mCurrentBottomSheetState = mBottomSheetBehavior.getState();
 		mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 			@Override
 			public void onStateChanged(@NonNull View bottomSheet, int newState) {
-				if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-					mFloatingActionButton.show();
+				if (newState != mCurrentBottomSheetState) {
+					mCurrentBottomSheetState = newState;
+					switch (newState) {
+						case BottomSheetBehavior.STATE_HIDDEN:
+							mFloatingActionButton.show();
+							break;
+						case BottomSheetBehavior.STATE_COLLAPSED:
+							mFloatingActionButton.hide();
+							break;
+					}
 				}
 			}
 
@@ -604,9 +615,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 				}
 				break;
 			case R.id.game_fab:  // fab button (to show bottom sheet)
-				Log.d(TAG, "onButtonClick: ");
 				mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-				mFloatingActionButton.hide();
 				break;
 			case R.id.gameBottomSheetTitle:  // Bottom sheet bar
 				if (mBottomSheetBehavior.getState() != BottomSheetBehavior.STATE_HIDDEN) {
@@ -626,8 +635,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 		switch (id) {
 			case R.id.gameBottomSheetTitle:
 				mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-				mFloatingActionButton.show();
-
+				break;
 		}
 		return false;
 	}

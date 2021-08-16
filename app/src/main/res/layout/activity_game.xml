@@ -271,6 +271,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_margin="16dp"
+				tools:visibility="visible"
 				android:onClick="@{handler::onButtonClick}"
 				android:contentDescription="@string/content_desc_arrow_up"
 				android:src="@drawable/ic_baseline_arrow_up_24"
