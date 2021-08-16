@@ -17,30 +17,30 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
+		<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/appBarLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
 
-			<com.google.android.material.appbar.AppBarLayout
-				android:id="@+id/appBarLayout"
+			<androidx.appcompat.widget.Toolbar
+				android:id="@+id/toolbar"
+				style="@style/Widget.MaterialComponents.Toolbar.Primary"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent">
-
-				<androidx.appcompat.widget.Toolbar
-					android:id="@+id/toolbar"
-					style="@style/Widget.MaterialComponents.Toolbar.Primary"
-					android:layout_width="match_parent"
-					android:layout_height="?attr/actionBarSize"
-					android:background="@color/colorPrimary"
-					app:menu="@menu/menu"
-					app:title="@string/string_title" />
-			</com.google.android.material.appbar.AppBarLayout>
+				android:layout_height="?attr/actionBarSize"
+				android:background="@color/colorPrimary"
+				app:menu="@menu/menu"
+				app:title="@string/string_title" />
+		</com.google.android.material.appbar.AppBarLayout>
 
 
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/drawer_layout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
+
 			<TextView
 				android:id="@+id/activity_main_text_title"
 				style="@style/ActivityTitle"
@@ -71,6 +71,7 @@
 				android:layout_marginTop="20dp"
 				android:text="@{player.name}"
 				android:textColor="?attr/colorSecondary"
+				android:onClick="@{handler::onButtonClick}"
 				android:textSize="28sp"
 				android:textStyle="bold"
 				app:layout_constraintEnd_toEndOf="parent"

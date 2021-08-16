@@ -143,13 +143,11 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 	private void getLastIdFromServer() {
 		String lastIdRoute = getResources().getString(R.string.api_endpoint_getLastId);
 		String lang = mPreferences.getString("langage", "EN");
-		Log.d(TAG, "getLastIdFromServer: ");
 
 		JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, API_URL + lastIdRoute + lang, null,
 			response -> {
 				try {
 					LAST_ID.setValue(response.getInt("questionId"));
-					Log.d(TAG, "onResponse: " + response.getInt("questionId"));
 				} catch (JSONException ignore) {
 				}
 			}, error -> Snackbar.make(findViewById(R.id.drawer_layout), getString(R.string.impossible_to_load_questions), Snackbar.LENGTH_LONG).setAction(getString(R.string.all_retry), new View.OnClickListener() {
@@ -232,7 +230,6 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-		Log.d(TAG, "onOptionsItemSelected: ");
 		int itemId = item.getItemId();
 		switch (itemId) {
 			case R.id.menu_niu:
@@ -326,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements NameDialog.NameDi
 					startActivityForResult(new Intent(mContext, GameActivity.class).putExtra("userId", mPlayer.getId()).putExtra("numberOfQuestions", mNumberOfQuestionsAsk), GAME_ACTIVITY_REQUEST_CODE);
 				}
 			}
-		} else if (id == R.id.button_users) {
+		} else if (id == R.id.button_users || id == R.id.text_display_name) {
 			startActivityForResult(new Intent(mContext, PlayersActivity.class), USERS_ACTIVITY_REQUEST_CODE);
 		} else if (id == R.id.activity_main_select_categories_button) {
 			startActivity(new Intent(mContext, SelectCategoriesActivity.class));
