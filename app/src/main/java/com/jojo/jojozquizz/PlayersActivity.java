@@ -7,41 +7,61 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.jojo.jojozquizz.databinding.ActivityPlayersBinding;
 import com.jojo.jojozquizz.dialogs.NameDialog;
 import com.jojo.jojozquizz.model.Player;
+import com.jojo.jojozquizz.tools.ClickHandler;
 import com.jojo.jojozquizz.tools.PlayersAdapter;
 import com.jojo.jojozquizz.tools.PlayersDatabase;
+import com.jojo.jojozquizz.ui.FabAnimation;
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlayersActivity extends AppCompatActivity implements View.OnClickListener, NameDialog.NameDialogListener {
+public class PlayersActivity extends AppCompatActivity implements NameDialog.NameDialogListener, ClickHandler {
 
 	private SharedPreferences mPreferences;
 
-	private ImageButton mBackButton, mAddUserButton;
+	private ImageButton mBackButton;
 	private RecyclerView mRecyclerView;
+
+	FloatingActionButton mFloatingActionButtonRemove, mFloatingActionButtonAdd, mFloatingActionButtonAddFromServer;
+	ExtendedFloatingActionButton mFloatingActionButton;
+
+	ActivityPlayersBinding mBinding;
+
+	boolean isMainFabRotate = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_players);
 
+		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_players);
+		mBinding.setHandler(this);
+
+		mFloatingActionButton = mBinding.floatingActionButtonUsers;
+		mFloatingActionButtonAdd = mBinding.floatingActionButtonChildAdd;
+		mFloatingActionButtonAddFromServer = mBinding.floatingActionButtonChildAddFromServer;
+		mFloatingActionButtonRemove = mBinding.floatingActionButtonChildRemove;
+
+		FabAnimation.init(mFloatingActionButtonRemove);
+		FabAnimation.init(mFloatingActionButtonAdd);
+		FabAnimation.init(mFloatingActionButtonAddFromServer);
+
 		mPreferences = this.getSharedPreferences("com.jojo.jojozquizz", MODE_PRIVATE);
 
 		mBackButton = findViewById(R.id.button_back_users_activity);
-		mAddUserButton = findViewById(R.id.button_add_user);
 		mRecyclerView = findViewById(R.id.recycler_users);
 
-		mAddUserButton.setTag(0);
 		mBackButton.setTag(1);
-
-		mAddUserButton.setOnClickListener(this);
-		mBackButton.setOnClickListener(this);
 
 		updateUI();
 	}
@@ -95,23 +115,46 @@ public class PlayersActivity extends AppCompatActivity implements View.OnClickLi
 	}
 
 	@Override
-	public void onClick(View v) {
-		int tag = (int) v.getTag();
-
-		if (tag == 0) {
-			NameDialog nameDialog = new NameDialog();
-			nameDialog.setIsNewUser(true);
-			nameDialog.setIsCancelable(true);
-			nameDialog.show(getSupportFragmentManager(), "name dialog usersactivity");
-
-		} else if (tag == 1) {
-			finish();
-		}
-	}
-
-	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
 	}
+
+	@Override
+	public void onButtonClick(View v) {
+		int id = v.getId();
+
+		switch (id) {
+			case R.id.floatingActionButtonUsers:
+				mFloatingActionButton.shrink();
+				isMainFabRotate = FabAnimation.rotateFab(v, !isMainFabRotate);
+				if (isMainFabRotate) {
+					FabAnimation.showIn(mFloatingActionButtonAdd, 1);
+					FabAnimation.showIn(mFloatingActionButtonAddFromServer, 2);
+					FabAnimation.showIn(mFloatingActionButtonRemove, 3);
+				} else {
+					FabAnimation.showOut(mFloatingActionButtonAdd, 3);
+					FabAnimation.showOut(mFloatingActionButtonAddFromServer, 2);
+					FabAnimation.showOut(mFloatingActionButtonRemove, 1);
+					mFloatingActionButton.extend();
+				}
+				break;
+			case R.id.floatingActionButtonChildAdd:
+				NameDialog nameDialog = new NameDialog();
+				nameDialog.setIsNewUser(true);
+				nameDialog.setIsCancelable(true);
+				nameDialog.show(getSupportFragmentManager(), "name dialog usersactivity");
+				break;
+			case R.id.button_back_users_activity:
+				finish();
+				break;
+		}
+	}
+
+	@Override
+	public boolean onLongButtonClick(View v) {
+
+		return false;
+	}
+
 }

@@ -1,54 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PlayersActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
-        android:id="@+id/button_back_users_activity"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="#00FFFFFF"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back"
-        android:contentDescription="@string/back_arrow" />
+	<data>
 
-    <TextView
-        android:id="@+id/text_utilisateurs"
-        style="@style/ActivityTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/players"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+		<variable
+			name="handler"
+			type="com.jojo.jojozquizz.tools.ClickHandler" />
+	</data>
 
-    <ImageButton
-        android:id="@+id/button_add_user"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:background="#00FFFFFF"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_utilisateurs"
-        app:srcCompat="@drawable/plus_icon"
-        android:contentDescription="@string/plus_icon" />
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".PlayersActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_users"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_add_user" />
+		<ImageButton
+			android:id="@+id/button_back_users_activity"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="10dp"
+			android:background="#00FFFFFF"
+			android:contentDescription="@string/back_arrow"
+			android:onClick="@{handler::onButtonClick}"
+			android:scaleType="centerInside"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_arrow_back" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/text_utilisateurs"
+			style="@style/ActivityTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/players"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recycler_users"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="50dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/text_utilisateurs"
+			tools:listitem="@layout/users_recycler_layout" />
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:gravity="end"
+			android:orientation="vertical"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent">
+
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/floatingActionButtonChildRemove"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="8dp"
+				android:contentDescription="TODO"
+				android:onClick="@{handler::onButtonClick}"
+				android:src="@drawable/ic_baseline_person_remove_24"
+				app:backgroundTint="?attr/colorPrimary"
+				app:fabSize="mini" />
+
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/floatingActionButtonChildAddFromServer"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="8dp"
+				android:contentDescription="TODO"
+				android:onClick="@{handler::onButtonClick}"
+				android:src="@drawable/ic_baseline_dns_24"
+				app:backgroundTint="?attr/colorPrimary"
+				app:fabSize="mini" />
+
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/floatingActionButtonChildAdd"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="8dp"
+				android:contentDescription="TODO"
+				android:onClick="@{handler::onButtonClick}"
+				android:src="@drawable/ic_baseline_person_add_24"
+				app:backgroundTint="?attr/colorPrimary"
+				app:fabSize="mini" />
+
+			<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+				android:id="@+id/floatingActionButtonUsers"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:contentDescription="create user"
+				android:onClick="@{handler::onButtonClick}"
+				android:text="Options"
+				app:icon="@drawable/ic_baseline_add_24" />
+		</LinearLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
