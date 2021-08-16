@@ -1,10 +1,6 @@
 package com.jojo.jojozquizz;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
