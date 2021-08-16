@@ -47,24 +47,6 @@
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintVertical_bias="0.0" />
 
-		<ImageButton
-			android:id="@+id/button_help"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginEnd="50dp"
-			android:layout_marginBottom="50dp"
-			android:background="#00FFFFFF"
-			android:contentDescription="@string/bonus_help"
-			android:minWidth="48dp"
-			android:minHeight="48dp"
-			android:onClick="@{handler::onButtonClick}"
-			app:layout_constraintBottom_toTopOf="@+id/adView2"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/bonus_of_player_text"
-			app:layout_constraintVertical_bias="1.0"
-			app:srcCompat="@android:drawable/ic_menu_help"
-			app:tint="?attr/colorSecondary" />
-
 		<ImageView
 			android:id="@+id/imageView2"
 			android:layout_width="50dp"
@@ -73,74 +55,21 @@
 			app:layout_constraintBottom_toTopOf="@+id/adView2"
 			app:layout_constraintEnd_toStartOf="@+id/imageView3"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/activity_bonus_text_title"
+			app:layout_constraintTop_toTopOf="@+id/imageView3"
 			app:layout_constraintVertical_bias="0.1"
 			app:srcCompat="@drawable/icon_bonus_skip_question" />
 
-
-		<ImageView
-			android:id="@+id/imageView3"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:contentDescription="@string/content_description_image_bonus_2"
-			app:layout_constraintBottom_toTopOf="@+id/adView2"
-			app:layout_constraintEnd_toStartOf="@+id/guideline2"
-			app:layout_constraintStart_toStartOf="@+id/guideline2"
-			app:layout_constraintTop_toBottomOf="@+id/activity_bonus_text_title"
-			app:layout_constraintVertical_bias="0.1"
-			app:srcCompat="@drawable/icon_bonus_less_answer" />
-
-		<ImageView
-			android:id="@+id/imageView4"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:contentDescription="@string/content_description_image_bonus_3"
-			app:layout_constraintBottom_toTopOf="@+id/adView2"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@+id/imageView3"
-			app:layout_constraintTop_toBottomOf="@+id/activity_bonus_text_title"
-			app:layout_constraintVertical_bias="0.1"
-			app:srcCompat="@drawable/icon_bonus_easier" />
-
-		<androidx.constraintlayout.widget.Guideline
-			android:id="@+id/guideline2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			app:layout_constraintGuide_percent="0.5" />
 
 		<TextView
 			android:id="@+id/text_number_bonus_1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="20dp"
-			android:text="@{player.bonus1}"
+			android:text="@{String.valueOf(player.bonus1)}"
 			android:textSize="20sp"
 			app:layout_constraintEnd_toEndOf="@+id/imageView2"
 			app:layout_constraintStart_toStartOf="@+id/imageView2"
 			app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-		<TextView
-			android:id="@+id/text_number_bonus_2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:text="@{player.bonus2}"
-			android:textSize="20sp"
-			app:layout_constraintEnd_toEndOf="@+id/imageView3"
-			app:layout_constraintStart_toStartOf="@+id/imageView3"
-			app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-		<TextView
-			android:id="@+id/text_number_bonus_3"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="20dp"
-			android:text="@{player.bonus3}"
-			android:textSize="20sp"
-			app:layout_constraintEnd_toEndOf="@+id/imageView4"
-			app:layout_constraintStart_toStartOf="@+id/imageView4"
-			app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
 		<ImageButton
 			android:id="@+id/button_add_bonus_1"
@@ -158,6 +87,39 @@
 			app:layout_constraintTop_toBottomOf="@+id/text_number_bonus_1"
 			app:srcCompat="@android:drawable/ic_menu_add" />
 
+		<ProgressBar
+			android:id="@+id/progressBarBonus1"
+			style="?android:attr/progressBarStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_1"
+			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_1"
+			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_1"
+			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_1" />
+
+		<ImageView
+			android:id="@+id/imageView3"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:layout_marginTop="50dp"
+			android:contentDescription="@string/content_description_image_bonus_2"
+			app:layout_constraintEnd_toStartOf="@+id/guideline2"
+			app:layout_constraintStart_toStartOf="@+id/guideline2"
+			app:layout_constraintTop_toBottomOf="@+id/activity_bonus_text_title"
+			app:layout_constraintVertical_bias="0.1"
+			app:srcCompat="@drawable/icon_bonus_less_answer" />
+
+		<TextView
+			android:id="@+id/text_number_bonus_2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:text="@{String.valueOf(player.bonus2)}"
+			android:textSize="20sp"
+			app:layout_constraintEnd_toEndOf="@+id/imageView3"
+			app:layout_constraintStart_toStartOf="@+id/imageView3"
+			app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
 		<ImageButton
 			android:id="@+id/button_add_bonus_2"
 			android:layout_width="wrap_content"
@@ -173,6 +135,38 @@
 			app:layout_constraintStart_toStartOf="@+id/imageView3"
 			app:layout_constraintTop_toBottomOf="@+id/text_number_bonus_2"
 			app:srcCompat="@android:drawable/ic_menu_add" />
+
+		<ProgressBar
+			android:id="@+id/progressBarBonus2"
+			style="?android:attr/progressBarStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_2"
+			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_2"
+			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_2"
+			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_2" />
+
+		<ImageView
+			android:id="@+id/imageView4"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:contentDescription="@string/content_description_image_bonus_3"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/imageView3"
+			app:layout_constraintTop_toTopOf="@+id/imageView3"
+			app:layout_constraintVertical_bias="0.1"
+			app:srcCompat="@drawable/icon_bonus_easier" />
+
+		<TextView
+			android:id="@+id/text_number_bonus_3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:text="@{String.valueOf(player.bonus3)}"
+			android:textSize="20sp"
+			app:layout_constraintEnd_toEndOf="@+id/imageView4"
+			app:layout_constraintStart_toStartOf="@+id/imageView4"
+			app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
 		<ImageButton
 			android:id="@+id/button_add_bonus_3"
@@ -190,6 +184,16 @@
 			app:layout_constraintTop_toBottomOf="@+id/text_number_bonus_3"
 			app:srcCompat="@android:drawable/ic_menu_add" />
 
+		<ProgressBar
+			android:id="@+id/progressBarBonus3"
+			style="?android:attr/progressBarStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_3"
+			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_3"
+			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_3"
+			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_3" />
+
 		<TextView
 			android:id="@+id/bonus_of_player_text"
 			android:layout_width="wrap_content"
@@ -202,38 +206,26 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/button_add_bonus_2" />
 
-		<ProgressBar
-			android:id="@+id/progressBarBonus1"
-			style="?android:attr/progressBarStyle"
+		<ImageButton
+			android:id="@+id/button_help"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_1"
-			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_1"
-			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_1"
-			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_1" />
-
-		<ProgressBar
-			android:id="@+id/progressBarBonus2"
-			style="?android:attr/progressBarStyle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_2"
-			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_2"
-			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_2"
-			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_2" />
-
-		<ProgressBar
-			android:id="@+id/progressBarBonus3"
-			style="?android:attr/progressBarStyle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			app:layout_constraintBottom_toBottomOf="@+id/button_add_bonus_3"
-			app:layout_constraintEnd_toEndOf="@+id/button_add_bonus_3"
-			app:layout_constraintStart_toStartOf="@+id/button_add_bonus_3"
-			app:layout_constraintTop_toTopOf="@+id/button_add_bonus_3" />
+			android:layout_marginEnd="50dp"
+			android:layout_marginBottom="50dp"
+			android:background="#00FFFFFF"
+			android:contentDescription="@string/bonus_help"
+			android:minWidth="48dp"
+			android:minHeight="48dp"
+			android:onClick="@{handler::onButtonClick}"
+			app:layout_constraintBottom_toTopOf="@+id/adViewBonus"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/bonus_of_player_text"
+			app:layout_constraintVertical_bias="1.0"
+			app:srcCompat="@android:drawable/ic_menu_help"
+			app:tint="?attr/colorSecondary" />
 
 		<com.google.android.gms.ads.AdView
-			android:id="@+id/adView2"
+			android:id="@+id/adViewBonus"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_alignParentBottom="true"
@@ -243,5 +235,12 @@
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/guideline2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			app:layout_constraintGuide_percent="0.5" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

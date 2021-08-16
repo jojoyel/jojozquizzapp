@@ -56,7 +56,7 @@ public class BonusActivity extends AppCompatActivity implements ClickHandler {
 		mBinding = DataBindingUtil.setContentView(this, R.layout.activity_bonus);
 		mBinding.setHandler(this);
 
-		mAdView = findViewById(R.id.adView2);
+		mAdView = mBinding.adViewBonus;
 
 		loadAds();
 
