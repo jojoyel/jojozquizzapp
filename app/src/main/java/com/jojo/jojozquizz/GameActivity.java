@@ -207,18 +207,17 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 					mCurrentBottomSheetState = newState;
 					switch (newState) {
 						case BottomSheetBehavior.STATE_HIDDEN:
-							mFloatingActionButton.show();
+							FabAnimation.fadeAndRotateYIn(mFloatingActionButton, 1);
 							break;
 						case BottomSheetBehavior.STATE_COLLAPSED:
-							mFloatingActionButton.hide();
+							FabAnimation.fadeAndRotateYOut(mFloatingActionButton, 1);
 							break;
 					}
 				}
 			}
 
 			@Override
-			public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-			}
+			public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
 		});
 
 		mNumberOfQuestionsAnsweredText.setText(String.format("1/%s", mTotalQuestions));

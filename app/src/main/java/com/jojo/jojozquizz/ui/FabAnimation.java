@@ -77,8 +77,43 @@ public class FabAnimation {
 					v.setVisibility(View.INVISIBLE);
 					super.onAnimationEnd(animation);
 				}
-			}).alpha(.5f)
+			}).alpha(0f)
 			.rotation(360f)
+			.start();
+	}
+
+	public static void fadeAndRotateYIn(final View v, int position) {
+		v.setVisibility(View.VISIBLE);
+		v.setAlpha(0f);
+		v.setRotationY(360f);
+		v.animate()
+			.setStartDelay((100L * position) - 100)
+			.setDuration(200)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					super.onAnimationEnd(animation);
+				}
+			}).alpha(1f)
+			.rotationY(180f)
+			.start();
+	}
+
+	public static void fadeAndRotateYOut(final View v, int position) {
+		v.setVisibility(View.VISIBLE);
+		v.setAlpha(1f);
+		v.setRotationY(0f);
+		v.animate()
+			.setStartDelay((100L * position) - 100)
+			.setDuration(200)
+			.setListener(new AnimatorListenerAdapter() {
+				@Override
+				public void onAnimationEnd(Animator animation) {
+					v.setVisibility(View.INVISIBLE);
+					super.onAnimationEnd(animation);
+				}
+			}).alpha(0f)
+			.rotationY(180f)
 			.start();
 	}
 
