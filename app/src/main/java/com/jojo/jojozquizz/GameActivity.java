@@ -199,6 +199,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 
 		mBottomSheetView = mBinding.gameBottomSheet;
 		mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheetView);
+
 		mCurrentBottomSheetState = mBottomSheetBehavior.getState();
 		mBottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 			@Override
@@ -217,7 +218,8 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 			}
 
 			@Override
-			public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+			public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+			}
 		});
 
 		mNumberOfQuestionsAnsweredText.setText(String.format("1/%s", mTotalQuestions));
@@ -576,7 +578,7 @@ public class GameActivity extends AppCompatActivity implements ClickHandler {
 						mCurrentQuestion.setChoiceList(Arrays.asList(mCurrentQuestion.getChoices().split("-/-")));
 						displayQuestion();
 						setStyleDefault();
-						mNumberOfQuestionsAnsweredText.setText(getString(R.string.slash, mQuestionsAnswered, mTotalQuestions));
+						mNumberOfQuestionsAnsweredText.setText(getString(R.string.slash, mQuestionsAnswered + 1, mTotalQuestions));
 						mProgressBar.setProgress(mQuestionsAnswered);
 						mEnableTouchEvents = true;
 					}, 1500);
